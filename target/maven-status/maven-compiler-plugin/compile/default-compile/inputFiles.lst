@@ -1,0 +1,9 @@
+/home/user/SpringMVC_CRUD/src/main/java/mvc_hiber/dao/UserDao.java
+/home/user/SpringMVC_CRUD/src/main/java/mvc_hiber/service/UserServiceImpl.java
+/home/user/SpringMVC_CRUD/src/main/java/mvc_hiber/controller/UserController.java
+/home/user/SpringMVC_CRUD/src/main/java/mvc_hiber/config/WebConfig.java
+/home/user/SpringMVC_CRUD/src/main/java/mvc_hiber/service/UserService.java
+/home/user/SpringMVC_CRUD/src/main/java/mvc_hiber/model/User.java
+/home/user/SpringMVC_CRUD/src/main/java/mvc_hiber/dao/UserDaoHibernateImpl.java
+/home/user/SpringMVC_CRUD/src/main/java/mvc_hiber/config/HibernateConfig.java
+/home/user/SpringMVC_CRUD/src/main/java/mvc_hiber/config/AppInitializer.java
