@@ -26,7 +26,7 @@
             <th>Confirmation - Update the record</th>
         </tr>
 
-        <jsp:useBean id="userToUpdate" scope="request" type="task5.spring.servlet.model.User"/>
+        <jsp:useBean id="userToUpdate" scope="request" type="mvc_hiber.model.User"/>
 
 
         <tr>
