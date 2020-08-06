@@ -5,16 +5,17 @@ import mvc_hiber.model.User;
 
 import java.util.List;
 
+import java.util.List;
+
 
 public interface UserService {
+    void saveUser(User user);
+
+    User getUserById(long id);
 
     List<User> getAllUsers();
-    //static UserService getInstance();
-    boolean checkUserByName(String name);
-    User getUserById(Long id);
-    boolean checkUserByLogin(String login);
-    void addUser(User user);
-    void deleteUserById(Long id);
-    void updateUser(User user);
-    User isExist(String login, String password);
+
+    void editUser(User user);
+
+    void deleteUser(User user);
 }

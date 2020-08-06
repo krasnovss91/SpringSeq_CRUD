@@ -1,155 +1,57 @@
 package mvc_hiber.dao;
 
 
+
 import mvc_hiber.model.User;
-import org.hibernate.*;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
 
+
 @Repository
-public class UserDaoHibernateImpl implements UserDao {
+public class UserDAOImpl implements UserDAO {
+   // private SessionFactory sessionFactory;
+   public EntityManager entityManager = Persistence.createEntityManagerFactory("COLIBRI").createEntityManager();
 
+ //   @Autowired
+  //  public UserDAOImpl(SessionFactory sessionFactory) {
+     //   this.sessionFactory = sessionFactory;
+  //  }
 
-    private SessionFactory sessionFactory;
+    @Override
+    public void saveUser(User user) {
+        //sessionFactory.getCurrentSession().saveOrUpdate(user);
+        entityManager.getTransaction().begin();
+        User user1 = entityManager.merge(user);
+        entityManager.getTransaction().commit();
 
-
-    @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
     }
 
+    @Override
+    public User getUserById(long id) {
+        return sessionFactory.getCurrentSession().get(User.class, id);
+    }
 
-   /* @Override
+    @Override
     public List<User> getAllUsers() {
-
-        Session session = this.sessionFactory.getCurrentSession();
-        List<User> allUsers = session.createQuery("from User").list();
-        return allUsers;
-
-    } */
-   @Override
-   public List<User> getAllUsersDao() {
-       Session session = sessionFactory.openSession();
-       Transaction transaction = session.beginTransaction();
-       List<User> allUsers = session.createQuery("FROM User").list();
-       transaction.commit();
-       session.close();
-       return allUsers;
-
-   }
-
-    @Override
-    public User getUserByIdDao(long id) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("from User where id = :userId");
-        List<User> userList = query.setParameter("userId", id).list();
-        User user = userList.get(0);
-
-        transaction.commit();
-        session.close();
-        return user;
+        return sessionFactory.getCurrentSession().createQuery("FROM User", User.class).getResultList();
     }
 
     @Override
-    public boolean checkUserByNameDao(String name) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("from User where name = :userName");
-        List<User> userList = query.setParameter("userName", name).list();
-
-        transaction.commit();
-        session.close();
-        if (userList.size() > 0) {
-            return false;
-        } else return true;
+    public void editUser(User user) {
+        entityManager.getTransaction().begin();;
+        entityManager.merge(user);
+        entityManager.getTransaction().commit();
+        //saveUser(user);
     }
 
     @Override
-    public boolean checkUserByLoginDao(String login) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("from User where login = :userLogin");
-        List<User> userList = query.setParameter("userLogin", login).list();
-        transaction.commit();
-        session.close();
-        if (userList.size() > 0) {
-            return false;
-        } else return true;
+    public void deleteUser(User user) {
+        entityManager.remove(user);
+        //sessionFactory.getCurrentSession().delete(user);
     }
-
-    @Override
-    public void addUserDao(User user) throws HibernateException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        try {
-            session.save(user);
-            transaction.commit();
-        } catch (HibernateException e) {
-            transaction.rollback();
-        } finally {
-            session.close();
-        }
-    }
-
-
-    @Override
-    public void updateUserDao(User user) throws HibernateException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        try {
-            session.createQuery("UPDATE User SET name=:name, login=:login, password=:password, role=:role WHERE id=:id")
-                    .setParameter("name", user.getName())
-                    .setParameter("login", user.getLogin())
-                    .setParameter("password", user.getPassword())
-                    .setParameter("role", user.getRole())
-                    .setParameter("id", user.getId())
-                    .executeUpdate();
-            transaction.commit();
-        } catch (HibernateException e) {
-            transaction.rollback();
-        } finally {
-            session.close();
-        }
-    }
-
-    @Override
-    public void deleteUserByIdDao(Long id) throws HibernateException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        try {
-            Query query = session.createQuery("DELETE FROM User WHERE id = :userId");
-            query.setParameter("userId", id);
-            query.executeUpdate();
-            transaction.commit();
-        } catch (HibernateException e) {
-            transaction.rollback();
-        } finally {
-            session.close();
-        }
-    }
-
-    @Override
-    public User isExist(String login, String password) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("from User where login = :userLogin");
-        List<User> userList = query.setParameter("userLogin", login).list();
-
-        User userExist = null;
-        for (User user : userList) {
-            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-                userExist = user;
-            }
-        }
-        transaction.commit();
-        session.close();
-        return userExist;
-    }
-
-
 }

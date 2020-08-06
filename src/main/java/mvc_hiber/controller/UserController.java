@@ -1,35 +1,39 @@
 package mvc_hiber.controller;
 
+
 import mvc_hiber.model.User;
+import mvc_hiber.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import mvc_hiber.service.UserService;
+
+import javax.validation.Valid;
+
 
 @Controller
 public class UserController {
     private UserService userService;
 
     @Autowired
-    public void setUserService(UserService userService) {
-
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
 
-   /* @RequestMapping(value = "read", method = RequestMethod.GET)
-    public String list(Model model) {
-        model.addAttribute("allUsers", this.userService.getAllUsers());
-        return "read";
-
-    } */
-   @GetMapping("/")
-   public String showUsers(Model model) {
-       model.addAttribute("users", userService.getAllUsers());
-       return "list-of-users";
-   }
+    @GetMapping("/")
+    public String showUsers(Model model) {
+        model.addAttribute("users", userService.getAllUsers());
+        return "list-of-users";
+    }
 
     @GetMapping("/showUserForm")
     public String showUserForm(Model model) {
@@ -45,7 +49,7 @@ public class UserController {
 
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") long id) {
-        userService.deleteUserById(userService.getUserById(id));
+        userService.deleteUser(userService.getUserById(id));
         return "redirect:/";
     }
 
@@ -54,7 +58,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "user-form";
         } else {
-            userService.save(user);
+            userService.saveUser(user);
             return "redirect:/";
         }
     }

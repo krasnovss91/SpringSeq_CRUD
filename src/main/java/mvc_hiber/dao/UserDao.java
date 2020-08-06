@@ -5,24 +5,17 @@ import mvc_hiber.model.User;
 
 import java.util.List;
 
-public interface UserDao {
+import java.util.List;
 
-   // List<User> getAllUsers();
 
-    List<User> getAllUsersDao();
+public interface UserDAO {
+    void saveUser(User user);
 
-    User getUserByIdDao(long id);
+    User getUserById(long id);
 
-    boolean checkUserByNameDao(String name);
+    List<User> getAllUsers();
 
-    boolean checkUserByLoginDao(String login);
+    void editUser(User user);
 
-    void addUserDao(User user);
-
-    void updateUserDao(User user);
-
-    void deleteUserByIdDao(Long id);
-
-    User isExist(String login, String password);
-
+    void deleteUser(User user);
 }
