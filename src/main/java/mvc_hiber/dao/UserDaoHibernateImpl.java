@@ -40,7 +40,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<User> getAllUsers() {
        // return sessionFactory.getCurrentSession().createQuery("FROM User", User.class).getResultList();
-        entityManager.createQuery("select from User ").getResultList(); }
+       return entityManager.createQuery("select e from User e",User.class).getResultList(); }
 
     @Override
     public void editUser(User user) {
