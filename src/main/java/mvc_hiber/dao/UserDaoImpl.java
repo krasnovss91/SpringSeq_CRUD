@@ -1,7 +1,5 @@
 package mvc_hiber.dao;
 
-
-
 import mvc_hiber.model.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +11,14 @@ import java.util.List;
 
 
 @Repository
-public class UserDAOImpl implements UserDAO {
-   // private SessionFactory sessionFactory;
-   public EntityManager entityManager = Persistence.createEntityManagerFactory("COLIBRI").createEntityManager();
+public  class UserDaoImpl implements UserDao {
+    // private SessionFactory sessionFactory;
+    public EntityManager entityManager = Persistence.createEntityManagerFactory("COLIBRI").createEntityManager();
 
- //   @Autowired
-  //  public UserDAOImpl(SessionFactory sessionFactory) {
-     //   this.sessionFactory = sessionFactory;
-  //  }
+    //   @Autowired
+    //  public UserDAOImpl(SessionFactory sessionFactory) {
+    //   this.sessionFactory = sessionFactory;
+    //  }
 
     @Override
     public void saveUser(User user) {
@@ -39,8 +37,8 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> getAllUsers() {
-       // return sessionFactory.getCurrentSession().createQuery("FROM User", User.class).getResultList();
-       return entityManager.createQuery("select e from User e",User.class).getResultList(); }
+        // return sessionFactory.getCurrentSession().createQuery("FROM User", User.class).getResultList();
+        return entityManager.createQuery("select e from User e",User.class).getResultList(); }
 
     @Override
     public void editUser(User user) {

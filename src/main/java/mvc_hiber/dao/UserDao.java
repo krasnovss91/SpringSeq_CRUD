@@ -5,10 +5,8 @@ import mvc_hiber.model.User;
 
 import java.util.List;
 
-import java.util.List;
 
-
-public interface UserDAO {
+public interface UserDao {
     void saveUser(User user);
 
     User getUserById(long id);

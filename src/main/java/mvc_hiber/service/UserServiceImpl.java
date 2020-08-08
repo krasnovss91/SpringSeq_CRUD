@@ -1,6 +1,6 @@
 package mvc_hiber.service;
 
-import mvc_hiber.dao.UserDAO;
+
 import mvc_hiber.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,41 +9,41 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
-    private UserDAO userDAO;
+public class  UserServiceImpl<UserDao> implements UserService {
+    private UserDao userDao;
 
     @Autowired
-    public UserServiceImpl(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @Override
     @Transactional
     public void saveUser(User user) {
-        userDAO.saveUser(user);
+        userDao.saveUser(user);
     }
 
     @Override
     @Transactional
     public User getUserById(long id) {
-        return userDAO.getUserById(id);
+        return userDao.getUserById(id);
     }
 
     @Override
     @Transactional
     public List<User> getAllUsers() {
-        return userDAO.getAllUsers();
+        return userDao.getAllUsers();
     }
 
     @Override
     @Transactional
     public void editUser(User user) {
-        userDAO.editUser(user);
+        userDao.editUser(user);
     }
 
     @Override
     @Transactional
     public void deleteUser(User user) {
-        userDAO.deleteUser(user);
+        userDao.deleteUser(user);
     }
 }
