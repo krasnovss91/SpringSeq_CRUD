@@ -1,6 +1,7 @@
 package mvc_hiber.service;
 
 
+import mvc_hiber.dao.UserDao;
 import mvc_hiber.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-public class  UserServiceImpl<UserDao> implements UserService {
+public class  UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Autowired
