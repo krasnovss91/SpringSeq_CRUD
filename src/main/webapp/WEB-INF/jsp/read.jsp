@@ -34,13 +34,13 @@
                 <td align="center" size="30"><c:out value="${user.password}"/></td>
                 <td align="center" size="30"><c:out value="${user.role}"/></td>
                 <td>
-                    <form method="GET" action="/admin/update?id=<c:out value='${user.id}' />">
+                    <form method="GET" action="/jsp_hibernate_project_war_exploded/admin/update?id=<c:out value='${user.id}' />">
                         <input type="submit" value="Update this User"/>
                     </form>
-                    <a href="/admin/update?id=<c:out value='${user.id}' />">Update this User</a>
+                    <a href="/jsp_hibernate_project_war_exploded/admin/update?id=<c:out value='${user.id}' />">Update this User</a>
                 </td>
                 <td>
-                    <a href="/admin/delete?id=<c:out value='${user.id}' />">Delete this User</a>
+                    <a href="/jsp_hibernate_project_war_exploded/admin/delete?id=<c:out value='${user.id}' />">Delete this User</a>
                 </td>
 
             </tr>
@@ -54,7 +54,7 @@
 
 
 
-    <form action="/admin/create">
+    <form action="/jsp_hibernate_project_war_exploded/admin/create">
         <input type="submit" value="Create the New User" />
     </form>
 

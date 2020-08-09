@@ -10,7 +10,7 @@
     <div class="form-style-2-heading">
         Please input New User info!
     </div>
-    <form method="post" action="/admin/create">
+    <form method="post" action="/jsp_hibernate_project_war_exploded/admin/create">
 
 
         <label for="name">User name

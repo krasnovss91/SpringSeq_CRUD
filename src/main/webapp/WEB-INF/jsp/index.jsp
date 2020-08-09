@@ -11,7 +11,7 @@
   <div class="form-style-2-heading">
     Please Sign Up!
   </div>
-  <form method="post" action="/index">
+  <form method="post" action="/jsp_hibernate_project_war_exploded/index">
     <label for="login">User login
       <input class="input-field" type="text" id="login" name="login">
     </label>
@@ -23,11 +23,11 @@
 
 
 
-  <form action="/admin/read">
+  <form action="/jsp_hibernate_project_war_exploded/admin/read">
     <input type="submit" value="Read User's List" />
   </form>
 
-  <form action="/admin/create">
+  <form action="/jsp_hibernate_project_war_exploded/admin/create">
     <input type="submit" value="Create the New User" />
   </form>
 

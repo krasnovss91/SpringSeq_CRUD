@@ -8,7 +8,7 @@
 <body>
 
 <div align="center">
-    <form method="POST" action="/admin/update">
+    <form method="POST" action="/jsp_hibernate_project_war_exploded/admin/update">
     <table bordercolor="red" border="1" cellpadding="4" cellspacing="0">
         <caption>
            <h2>Update page</h2>
@@ -67,11 +67,11 @@
 
 
 
-    <form action="/admin/create">
+    <form action="/jsp_hibernate_project_war_exploded/admin/create">
         <input type="submit" value="Create the New User" />
     </form>
 
-    <form action="/admin">
+    <form action="/jsp_hibernate_project_war_exploded/admin">
         <input type="submit" value="Read User's List" />
     </form>
 

@@ -36,7 +36,7 @@
                 <td><c:out value="${user.role}"/></td>
 
                 <td>
-                    <form method="POST" action="/admin/delete?id=<c:out value='${user.id}' />">
+                    <form method="POST" action="/jsp_hibernate_project_war_exploded/admin/delete?id=<c:out value='${user.id}' />">
                         <input type="submit" value="Delete this User"/>
                     </form>
 
@@ -54,11 +54,11 @@
 
 
 
-    <form action="/admin/create">
+    <form action="/jsp_hibernate_project_war_exploded/admin/create">
         <input type="submit" value="Create the New User" />
     </form>
 
-    <form action="/admin">
+    <form action="/jsp_hibernate_project_war_exploded/admin">
         <input type="submit" value="Read User's List" />
     </form>
 
