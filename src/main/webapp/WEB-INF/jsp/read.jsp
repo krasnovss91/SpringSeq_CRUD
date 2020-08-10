@@ -1,9 +1,9 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Read</title>
-    <link href="/res/styles.css" rel="stylesheet" type="text/css">
+    <title>CRUD-App</title>
 </head>
 <body>
 
@@ -11,7 +11,7 @@
 
     <table bordercolor="red" border="1" cellpadding="4" cellspacing="0">
         <caption>
-            <h2>Read page</h2>
+            <h2>Users</h2>
         </caption>
         <br/><br/>
         <tr>
@@ -19,7 +19,6 @@
             <th>Name</th>
             <th>Login</th>
             <th>Password</th>
-            <th>Role</th>
             <th>Change the record - Update</th>
             <th>Change the record - Delete</th>
         </tr>
@@ -32,39 +31,46 @@
                 <td align="center" size="30"><c:out value="${user.name}"/></td>
                 <td align="center" size="30"><c:out value="${user.login}"/></td>
                 <td align="center" size="30"><c:out value="${user.password}"/></td>
-                <td align="center" size="30"><c:out value="${user.role}"/></td>
                 <td>
-                    <form method="GET" action="/jsp_hibernate_project_war_exploded/admin/update?id=<c:out value='${user.id}' />">
-                        <input type="submit" value="Update this User"/>
-                    </form>
-                    <a href="/jsp_hibernate_project_war_exploded/admin/update?id=<c:out value='${user.id}' />">Update this User</a>
+                    <a href="/jsp_hibernate_project_war/update?id=<c:out value='${user.id}' />">Update this User</a>
                 </td>
                 <td>
-                    <a href="/jsp_hibernate_project_war_exploded/admin/delete?id=<c:out value='${user.id}' />">Delete this User</a>
+                    <form method="POST" action="/jsp_hibernate_project_war/delete?id=<c:out value='${user.id}' />">
+                        <input type="submit" value="Delete this User"/>
+                    </form>
                 </td>
 
             </tr>
         </c:forEach>
-
     </table>
     <hr>
 
     <br/><br/>
     <hr>
 
+    <div class="form-style-2">
+        <div class="form-style-2-heading">
+            Please input New User info!
+        </div>
+        <form method="post" action="/jsp_hibernate_project_war/create">
 
 
-    <form action="/jsp_hibernate_project_war_exploded/admin/create">
-        <input type="submit" value="Create the New User" />
-    </form>
+            <label for="name">User name
+                <input class="input-field" type="text" required="required" id="name" name="name">
+            </label>
+            <label for="login">Login
+                <input class="input-field" type="text" required="required" id="login" name="login">
+            </label>
+            <label for="password">Password
+                <input class="input-field" type="password" required="required" id="password" name="password">
+            </label>
+            <input type="submit" value="Create New User">
+        </form>
+
+    </div>
 
 
-    &nbsp;&nbsp;&nbsp;
-
-    <a href="<c:url value='/logout' />">Logout</a>
-
-
+    &nbsp;
 </div>
 
 </body>
-</html>
