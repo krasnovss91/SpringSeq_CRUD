@@ -8,13 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 
 @Repository
 public  class UserDaoImpl implements UserDao {
     // private SessionFactory sessionFactory;
-    public EntityManager entityManager = Persistence.createEntityManagerFactory("COLIBRI").createEntityManager();
+   //
+    @PersistenceContext
+    EntityManager entityManager;
 
     //   @Autowired
     //  public UserDAOImpl(SessionFactory sessionFactory) {
