@@ -24,7 +24,7 @@ public class PersistenceJPAConfig{
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[]{ "org.baeldung.persistence.model" });
+        em.setPackagesToScan(new String[]{ "mvc_hiber.model" });
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -37,9 +37,9 @@ public class PersistenceJPAConfig{
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/spring__jpa");
-        dataSource.setUsername( "tutorialuser" );
-        dataSource.setPassword( "tutorialmy5ql" );
+        dataSource.setUrl("jdbc:mysql://localhost:3306/db_example");
+        dataSource.setUsername( "root" );
+        dataSource.setPassword( "password" );
         return dataSource;
     }
 
