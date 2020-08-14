@@ -13,13 +13,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
 public class PersistenceJPAConfig {
 
-    @Bean
+   @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         return new HibernateJpaVendorAdapter();
     }
@@ -31,13 +33,14 @@ public class PersistenceJPAConfig {
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setPackagesToScan(new String[]{"mvc_hiber.model"});
 
-       // JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        JpaVendorAdapter jpaVendorAdapter = jpaVendorAdapter();
-        entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
+      //  JpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+        //JpaVendorAdapter jpaVendorAdapter = jpaVendorAdapter();
+      //  entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
         entityManagerFactoryBean.setJpaProperties(additionalProperties());
 
         return entityManagerFactoryBean;
     }
+
 
     @Bean
     public DataSource dataSource() {
@@ -51,9 +54,9 @@ public class PersistenceJPAConfig {
 
     @Bean
     public PlatformTransactionManager transactionManager(
-            EntityManagerFactory emf) {
+            EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(emf);
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
 
         return transactionManager;
     }
