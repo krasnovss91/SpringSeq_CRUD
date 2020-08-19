@@ -33,9 +33,9 @@ public class PersistenceJPAConfig {
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setPackagesToScan(new String[]{"mvc_hiber.model"});
 
-      //  JpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+        JpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
         //JpaVendorAdapter jpaVendorAdapter = jpaVendorAdapter();
-      //  entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
+        entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
         entityManagerFactoryBean.setJpaProperties(additionalProperties());
 
         return entityManagerFactoryBean;
