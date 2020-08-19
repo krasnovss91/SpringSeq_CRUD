@@ -1,5 +1,6 @@
 package mvc_hiber.config;
 
+import org.hibernate.dialect.MySQLDialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -7,6 +8,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -24,11 +26,27 @@ public class PersistenceJPAConfig {
 
     @Bean
     HibernateJpaVendorAdapter jpaVendorAdapter() {
-        HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+       /* HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
         jpaVendorAdapter.setGenerateDdl(false);
         jpaVendorAdapter.setShowSql(true);
-        return jpaVendorAdapter;
+        return jpaVendorAdapter;*/
+        HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
+        hibernateJpaVendorAdapter.setShowSql(true);
+        hibernateJpaVendorAdapter.setGenerateDdl(true);
+        hibernateJpaVendorAdapter.setDatabase(Database.MYSQL);
+        hibernateJpaVendorAdapter.setDatabasePlatform(MySQLDialect.class.getName());
+        return hibernateJpaVendorAdapter;
     }
+    /*
+      public JpaVendorAdapter jpaVendorAdapter() {
+    HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
+    hibernateJpaVendorAdapter.setShowSql(true);
+    hibernateJpaVendorAdapter.setGenerateDdl(true);
+    hibernateJpaVendorAdapter.setDatabase(Database.POSTGRESQL);
+    hibernateJpaVendorAdapter.setDatabasePlatform(MyPGDialect.class.getName());
+    return hibernateJpaVendorAdapter;
+  }
+     */
 
 
     @Bean
