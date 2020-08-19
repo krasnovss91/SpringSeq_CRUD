@@ -21,15 +21,16 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class PersistenceJPAConfig {
 
-   @Bean
-   HibernateJpaVendorAdapter jpaVendorAdapter(){
-       HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-       jpaVendorAdapter.setGenerateDdl(false);
-       jpaVendorAdapter.setShowSql(true);
-       return jpaVendorAdapter;
-   }
 
-   
+    @Bean
+    HibernateJpaVendorAdapter jpaVendorAdapter() {
+        HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+        jpaVendorAdapter.setGenerateDdl(false);
+        jpaVendorAdapter.setShowSql(true);
+        return jpaVendorAdapter;
+    }
+
+
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean
@@ -37,8 +38,8 @@ public class PersistenceJPAConfig {
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setPackagesToScan(new String[]{"mvc_hiber.model"});
 
-        JpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-        //JpaVendorAdapter jpaVendorAdapter = jpaVendorAdapter();
+       // JpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+          JpaVendorAdapter jpaVendorAdapter = jpaVendorAdapter();
         entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
         entityManagerFactoryBean.setJpaProperties(additionalProperties());
 
@@ -57,8 +58,7 @@ public class PersistenceJPAConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(
-            EntityManagerFactory entityManagerFactory) {
+    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
 
