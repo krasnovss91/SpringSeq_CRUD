@@ -26,10 +26,7 @@ public class PersistenceJPAConfig {
 
     @Bean
     HibernateJpaVendorAdapter jpaVendorAdapter() {
-       /* HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-        jpaVendorAdapter.setGenerateDdl(false);
-        jpaVendorAdapter.setShowSql(true);
-        return jpaVendorAdapter;*/
+
         HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
         hibernateJpaVendorAdapter.setShowSql(true);
         hibernateJpaVendorAdapter.setGenerateDdl(true);
@@ -37,16 +34,7 @@ public class PersistenceJPAConfig {
         hibernateJpaVendorAdapter.setDatabasePlatform(MySQLDialect.class.getName());
         return hibernateJpaVendorAdapter;
     }
-    /*
-      public JpaVendorAdapter jpaVendorAdapter() {
-    HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-    hibernateJpaVendorAdapter.setShowSql(true);
-    hibernateJpaVendorAdapter.setGenerateDdl(true);
-    hibernateJpaVendorAdapter.setDatabase(Database.POSTGRESQL);
-    hibernateJpaVendorAdapter.setDatabasePlatform(MyPGDialect.class.getName());
-    return hibernateJpaVendorAdapter;
-  }
-     */
+
 
 
     @Bean
@@ -56,7 +44,6 @@ public class PersistenceJPAConfig {
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setPackagesToScan(new String[]{"mvc_hiber.model"});
 
-       // JpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
           JpaVendorAdapter jpaVendorAdapter = jpaVendorAdapter();
         entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
         entityManagerFactoryBean.setJpaProperties(additionalProperties());
