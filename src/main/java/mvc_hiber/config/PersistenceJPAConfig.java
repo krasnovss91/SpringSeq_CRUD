@@ -22,10 +22,14 @@ import java.util.Properties;
 public class PersistenceJPAConfig {
 
    @Bean
-    public JpaVendorAdapter jpaVendorAdapter() {
-        return new HibernateJpaVendorAdapter();
-    }
+   HibernateJpaVendorAdapter jpaVendorAdapter(){
+       HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+       jpaVendorAdapter.setGenerateDdl(false);
+       jpaVendorAdapter.setShowSql(true);
+       return jpaVendorAdapter;
+   }
 
+   
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean
