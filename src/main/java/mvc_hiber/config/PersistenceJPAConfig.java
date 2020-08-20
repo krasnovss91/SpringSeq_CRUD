@@ -35,7 +35,7 @@ public class PersistenceJPAConfig {
         return hibernateJpaVendorAdapter;
     }
 
-*/
+
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -50,7 +50,20 @@ public class PersistenceJPAConfig {
 
         return entityManagerFactoryBean;
     }
+ */
+ @Bean
+ public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+     LocalContainerEntityManagerFactoryBean entityManagerFactoryBean
+             = new LocalContainerEntityManagerFactoryBean();
+     entityManagerFactoryBean.setDataSource(dataSource());
+     entityManagerFactoryBean.setPackagesToScan(new String[] { "mvc_hiber.model" });
 
+     JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+     entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
+     entityManagerFactoryBean.setJpaProperties(additionalProperties());
+
+     return entityManagerFactoryBean;
+ }
 
     @Bean
     public DataSource dataSource() {
