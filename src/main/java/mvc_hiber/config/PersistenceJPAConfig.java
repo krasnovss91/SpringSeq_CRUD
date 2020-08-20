@@ -24,7 +24,7 @@ import java.util.Properties;
 public class PersistenceJPAConfig {
 
 
-    @Bean
+ /*   @Bean
     HibernateJpaVendorAdapter jpaVendorAdapter() {
 
         HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
@@ -35,7 +35,7 @@ public class PersistenceJPAConfig {
         return hibernateJpaVendorAdapter;
     }
 
-
+*/
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -44,8 +44,8 @@ public class PersistenceJPAConfig {
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setPackagesToScan(new String[]{"mvc_hiber.model"});
 
-          JpaVendorAdapter jpaVendorAdapter = jpaVendorAdapter();
-        entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
+       //   JpaVendorAdapter jpaVendorAdapter = jpaVendorAdapter();
+      //  entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
         entityManagerFactoryBean.setJpaProperties(additionalProperties());
 
         return entityManagerFactoryBean;
