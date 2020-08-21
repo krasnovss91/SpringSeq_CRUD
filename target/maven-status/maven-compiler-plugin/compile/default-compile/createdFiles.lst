@@ -3,7 +3,7 @@ mvc_hiber/service/UserService.class
 mvc_hiber/model/User.class
 mvc_hiber/controller/UserController.class
 mvc_hiber/config/WebConfig.class
-mvc_hiber/config/HibernateConfig.class
 mvc_hiber/config/AppInitializer.class
+mvc_hiber/config/PersistenceJPAConfig.class
 mvc_hiber/service/UserServiceImpl.class
 mvc_hiber/dao/UserDao.class
