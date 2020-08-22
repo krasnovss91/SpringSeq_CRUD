@@ -29,10 +29,16 @@ public class UserController {
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
-    @GetMapping("/")
+    @GetMapping("/list-of-users")
     public String showUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "list-of-users";
+    }
+
+    @GetMapping("/")
+    public String showAll(Model model){
+        model.addAttribute("users",userService.getAllUsers());
+        return "navigation";
     }
 
     @GetMapping("/showUserForm")
