@@ -36,7 +36,6 @@
             <th> id </th>
             <th> name </th>
             <th> login </th>
-            <th> role </th>
             <th> options </th>
         </tr>
         <%-- pass through all users --%>
@@ -45,10 +44,9 @@
                 <th> ${user.id} </th>
                 <th> ${user.name} </th>
                 <th> ${user.login} </th>
-                <th> ${user.role} </th>
                 <th>
-                    <a href="/edit/${user.id}"> edit </a>
-                    <a href="/delete/${user.id}"
+                    <a href="/jsp_hibernate_project_war_exploded/edit/${user.id}"> edit </a>
+                    <a href="/jsp_hibernate_project_war_exploded/delete/${user.id}"
                        onclick="if (!(confirm('Are you sure you want to delete this user?'))) return false"> delete </a>
                 </th>
             </tr>

@@ -21,7 +21,7 @@
 <table border="3">
     <tr>
         <th><a href="/"> SHOW ALL USERS </a></th>
-        <th><a href="/showUserForm"> ADD USER </a></th>
+        <th><a href="/jsp_hibernate_project_war_exploded/showUserForm"> ADD USER </a></th>
     </tr>
 </table>
 </body>
