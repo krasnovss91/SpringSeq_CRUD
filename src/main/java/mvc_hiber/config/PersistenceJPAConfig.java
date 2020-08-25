@@ -28,6 +28,7 @@ public class PersistenceJPAConfig {
  @Autowired
  private Environment environment;
 
+ /*
     @Bean
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -37,7 +38,7 @@ public class PersistenceJPAConfig {
         dataSource.setPassword(environment.getProperty("db.password"));
         return dataSource;
     }
-
+*/
  @Bean
  public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
      LocalContainerEntityManagerFactoryBean entityManagerFactoryBean
@@ -56,11 +57,12 @@ public class PersistenceJPAConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-      //  dataSource.setUrl("jdbc:mysql://localhost:3306/db_example?verifyServerCertificate=false&useSSL=false&requireSSL=false&useLegacyDatetimeCode=false&amp&serverTimezone=UTC");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/db_example&serverTimezone=UTC");// сюда Timezone
-       // dataSource.setUrl(environment.getProperty("db.url"));
-        dataSource.setUsername("root");
-        dataSource.setPassword("password");
+        //dataSource.setUrl("jdbc:mysql://localhost:3306/db_example&serverTimezone=UTC");// сюда Timezone
+        dataSource.setUrl(environment.getProperty("db.url"));
+        dataSource.setUsername(environment.getProperty("db.username"));
+        dataSource.setPassword(environment.getProperty("db.password"));
+        //dataSource.setUsername("root");
+        //dataSource.setPassword("password");
         return dataSource;
     }
 
