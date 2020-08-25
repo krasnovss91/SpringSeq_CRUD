@@ -56,7 +56,9 @@ public class PersistenceJPAConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/db_example");
+      //  dataSource.setUrl("jdbc:mysql://localhost:3306/db_example?verifyServerCertificate=false&useSSL=false&requireSSL=false&useLegacyDatetimeCode=false&amp&serverTimezone=UTC");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/db_example&serverTimezone=UTC");// сюда Timezone
+       // dataSource.setUrl(environment.getProperty("db.url"));
         dataSource.setUsername("root");
         dataSource.setPassword("password");
         return dataSource;

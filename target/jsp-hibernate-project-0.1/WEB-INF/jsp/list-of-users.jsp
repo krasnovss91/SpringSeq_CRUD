@@ -15,7 +15,7 @@
         fieldset {
             width: 300px;
             border: 1px;
-            margin: auto;   /* Выравниваем таблицу по центру окна  */
+            margin: auto;
         }
         legend {
             border: 5px;
