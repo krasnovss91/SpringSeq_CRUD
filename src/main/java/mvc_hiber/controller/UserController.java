@@ -16,6 +16,7 @@ import javax.validation.Valid;
 
 @Controller
 public class UserController {
+   // @GetMapping(value = "navigation")
     private UserService userService;
 
     @Autowired
