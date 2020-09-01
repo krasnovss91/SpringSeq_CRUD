@@ -26,7 +26,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.17" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.19" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.6.1" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:5.4.17.Final" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.3.2.Final" />
