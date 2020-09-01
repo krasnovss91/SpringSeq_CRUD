@@ -2,6 +2,7 @@ package mvc_hiber.dao;
 
 import mvc_hiber.model.User;
 import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-   @PersistenceContext
+    @PersistenceContext
     EntityManager entityManager;
 
 
@@ -25,7 +26,15 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserById(long id) {
 
-        return entityManager.createQuery("select e from User e where  e.id =:id", User.class).setParameter("id", id).getSingleResult();
+     //   return entityManager.createQuery("select e from User e where  e.id =:id", User.class).setParameter("id", id).getSingleResult();
+      //  EntityManager entityManager = entityManagerFactory.createEntityManager();
+       // EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        User user = entityManager.find(User.class, new Integer((int)id));
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return user;
+
     }
 
     @Override
@@ -36,9 +45,11 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void editUser(User user) {
+
         entityManager.getTransaction().begin();
         entityManager.merge(user);
         entityManager.getTransaction().commit();
+        entityManager.close();
 
     }
 

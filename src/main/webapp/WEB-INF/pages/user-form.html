@@ -1,10 +1,22 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<div align="center">
+    <h1>Edit User</h1>
+    <form th:action="@{/edit}" th:object="${editUser}" method="post">
+        <table>
+            <!--<tr><p>Id: <input th:type="number" th:value="*{id}"></p></tr>-->
+            <tr><p>Name: <input th:type="text" th:field="*{name}"></p></tr>
+            <tr><p>Login: <input th:type="text" th:field="*{login}"></p></tr>
+            <tr><p>Password: <input th:type="number" th:field="*{password}"></p></tr>
+        </table>
+    </form>
+    <a th:href="@{/}">Return</a>
 
 </body>
 </html>
