@@ -32,7 +32,7 @@ public class UserController {
 
     @GetMapping("/list-of-users")
     public String showUsers(Model model) {
-        model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("users", userService.getAllUsers());//Этот контроллер работает исправно
         return "list-of-users";
     }
 
@@ -57,7 +57,7 @@ public class UserController {
    public String editUser(@PathVariable("id") int id, Model model) {
        User user = userService.getUserById(id);
        model.addAttribute("editUser", user);
-       return "userEdit";
+       return "user-form";
    }
     @PostMapping("/edit")
     public String editUser(@ModelAttribute("editUser") User user) {
