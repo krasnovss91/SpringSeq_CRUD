@@ -7,21 +7,55 @@
 <body>
 <div align="center">
     <h1>Edit User</h1>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.getId()}"></td>
-        <td th:text="${user.geName()}"></td>
-        <td th:text="${user.getLogin()}"></td>
-        <td th:text="${user.getPassword()}"></td>
-        <td>
-        </td>
-        <td><a class="nav-link" data-toggle="modal" data-target="#myEdit">
-            <button class="btn btn-info">Edit</button>
-        </a></td>
-        <td>
-            <a class="nav-link" data-toggle="modal" data-target="#myDelete">
-                <button class="btn btn-danger">Delete</button>
-            </a></td>
-    </tr>
+
+    <h1>list of users</h1>
+    <div th:if="${!listBook.isEmpty()}">
+        <table class="tg" border="3">
+            <tr>
+                <td width="80">id</td>
+                <td width="120">title</td>
+                <td width="120">author</td>
+                <td width="120">price</td>
+                <td width="50">edit</td>
+                <td width="50">delete</td>
+            </tr>
+            <th:block th:each="book : ${listBook}">
+                <tr>
+                    <td th:text="${book.id}"></td>
+                    <td>
+                        <a th:href="@{/books/{id}(id=${book.id})}" th:text="${book.title}"></a>
+                    </td>
+                    <td th:text="${book.author}"></td>
+                    <td th:text="${book.price}"></td>
+                    <td>
+                        <a th:href="@{/books/edit/{id}(id=${book.id})}">edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{/books/remove/{id}(id=${book.id})}">delete</a>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+    <br/>
+    <br/>
+    <div>
+        <h1>add book form</h1>
+        <form class="tg" action="#" th:action="@{/users/add}" th:object="${users}" method="post">
+            <p><input type="hidden" th:field="*{id}"/></p>
+            <p>title: <input type="text" th:field="*{title}" required/></p>
+            <p>author: <input type="text" th:field="*{author}" required/></p>
+            <p>price: <input type="text" th:field="*{price}" required/></p>
+            <p>
+                <input type="submit" value="Submit" />
+                <input type="reset" value="Reset" />
+            </p>
+        </form>
+    </div>
+    <br/>
+    <div>
+        <a href="/">index</a>
+    </div>
     <a th:href="@{/}">Return</a>
 
 </body>

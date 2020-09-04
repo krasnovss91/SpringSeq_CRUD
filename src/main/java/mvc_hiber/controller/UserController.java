@@ -42,17 +42,36 @@ public class UserController {
         return "navigation";
     }
 
+    @PostMapping("/add")
+    public String addUser(@ModelAttribute User user){
+        if(user.getId() == 0){
+            userService.saveUser(user);
+        }else {
+            userService.editUser(user);
+        }
+        return "redirect/list-of-users";
+    }
+
     @GetMapping("/showUserForm")
     public String showUserForm(Model model) {
         model.addAttribute("user", new User());
         return "user-form";
     }
+/*
+    @GetMapping("/edit/{id}")
+    public String updateUser(@PathVariable long id, Model model) {
+        model.addAttribute("user", this.userService.getById(id));
+        model.addAttribute("listUser", this.userService.getAll());
+        return "list-of-users";
+    }
 
-   /* @GetMapping("/edit/{id}")
-    public String editUser(@PathVariable("id") long id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
-        return "user-form";
-    } */
+    @GetMapping("/{id}")
+    public String userData(@PathVariable long id, Model model) {
+        model.addAttribute("user", this.userService.getById(id));
+        return "list-of-users";
+    }
+ */
+
    @GetMapping("/edit/{id}")
    public String editUser(@PathVariable("id") int id, Model model) {
        User user = userService.getUserById(id);
@@ -67,19 +86,12 @@ public class UserController {
 
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") long id) {
-        userService.deleteUser(userService.getUserById(id));
-        return "redirect:/";
+       userService.deleteUser(id);
+       return "redirect/list-of-users";
+
     }
 
-    @PostMapping("/saveOrUpdateUser")
-    public String saveOrUpdateUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "user-form";
-        } else {
-            userService.saveUser(user);
-            return "redirect:/";
-        }
-    }
+
 
 }
 
