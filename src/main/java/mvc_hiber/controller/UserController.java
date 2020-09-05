@@ -31,9 +31,9 @@ public class UserController {
     }
 
     @GetMapping("/list-of-users")
-    public String showUsers(Model model) {
-        model.addAttribute("users", userService.getAllUsers());//Этот контроллер работает исправно
-        return "list-of-users";
+    public String showUsers(Model model) {// Этот контроллер работает исправно
+        model.addAttribute("users", userService.getAllUsers());//вызов метода
+        return "list-of-users";//страница, которую возвращаем
     }
 
     @GetMapping("/")
@@ -57,25 +57,13 @@ public class UserController {
         model.addAttribute("user", new User());
         return "user-form";
     }
-/*
-    @GetMapping("/edit/{id}")
-    public String updateUser(@PathVariable long id, Model model) {
-        model.addAttribute("user", this.userService.getById(id));
-        model.addAttribute("listUser", this.userService.getAll());
-        return "list-of-users";
-    }
 
-    @GetMapping("/{id}")
-    public String userData(@PathVariable long id, Model model) {
-        model.addAttribute("user", this.userService.getById(id));
-        return "list-of-users";
-    }
- */
 
    @GetMapping("/edit/{id}")
    public String editUser(@PathVariable("id") int id, Model model) {
        User user = userService.getUserById(id);
-       model.addAttribute("editUser", user);
+       model.addAttribute("listUsers", this.userService.getAllUsers());
+      // model.addAttribute("editUser", user);
        return "user-form";
    }
     @PostMapping("/edit")
@@ -89,6 +77,12 @@ public class UserController {
        userService.deleteUser(id);
        return "redirect/list-of-users";
 
+    }
+
+    @GetMapping("/{id}")
+    public String userData(@PathVariable long id, Model model) {
+        model.addAttribute("user", this.userService.getUserById(id));
+        return "list-of-users";
     }
 
 

@@ -28,10 +28,10 @@
                     <td th:text="${user.login}"></td>
                     <td th:text="${user.password}"></td>
                     <td>
-                        <a th:href="@{/books/edit/{id}(id=${user.id})}">edit</a>
+                        <a th:href="@{/user-form.html/edit/{id}(id=${user.id})}">edit</a>
                     </td>
                     <td>
-                        <a th:href="@{/list-of-users.html/remove/{id}(id=${user.id})}">delete</a>
+                        <a th:href="@{/user-form.html/remove/{id}(id=${user.id})}">delete</a>
                     </td>
                 </tr>
             </th:block>
@@ -43,9 +43,9 @@
         <h1>add user form</h1>
         <form class="tg" action="#" th:action="@{/users/add}" th:object="${users}" method="post">
             <p><input type="hidden" th:field="*{id}"/></p>
-            <p>title: <input type="text" th:field="*{name}" required/></p>
-            <p>author: <input type="text" th:field="*{login}" required/></p>
-            <p>price: <input type="text" th:field="*{password}" required/></p>
+            <p>name: <input type="text" th:field="*{name}" required/></p>
+            <p>login: <input type="text" th:field="*{login}" required/></p>
+            <p>password: <input type="text" th:field="*{password}" required/></p>
             <p>
                 <input type="submit" value="Submit" />
                 <input type="reset" value="Reset" />
