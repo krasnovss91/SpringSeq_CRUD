@@ -75,14 +75,14 @@ public class UserController {
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") long id) {
        userService.deleteUser(id);
-       return "user-form";
+       return "redirect/user-form";
 
     }
 
     @GetMapping("/{id}")
     public String userData(@PathVariable long id, Model model) {
         model.addAttribute("user", this.userService.getUserById(id));
-        return "user-form";
+        return "list-of-users";
     }
 
 
