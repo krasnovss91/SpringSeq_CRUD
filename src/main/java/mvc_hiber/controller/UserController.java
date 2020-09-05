@@ -54,7 +54,9 @@ public class UserController {
 
     @GetMapping("/showUserForm")
     public String showUserForm(Model model) {
-        model.addAttribute("user", new User());
+      //  model.addAttribute("user", new User());
+        model.addAttribute("book", new User());
+        model.addAttribute("listBook", userService.getAllUsers());
         return "user-form";
     }
 
@@ -63,7 +65,7 @@ public class UserController {
    public String editUser(@PathVariable("id") int id, Model model) {
        User user = userService.getUserById(id);
        model.addAttribute("listUsers", this.userService.getAllUsers());
-      // model.addAttribute("editUser", user);
+       model.addAttribute("user", user);
        return "user-form";
    }
     @PostMapping("/edit")

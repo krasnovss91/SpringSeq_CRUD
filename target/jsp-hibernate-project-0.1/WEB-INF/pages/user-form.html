@@ -13,9 +13,9 @@
         <table class="tg" border="3">
             <tr>
                 <td width="80">id</td>
-                <td width="120">title</td>
-                <td width="120">author</td>
-                <td width="120">price</td>
+                <td width="120">name</td>
+                <td width="120">login</td>
+                <td width="120">password</td>
                 <td width="50">edit</td>
                 <td width="50">delete</td>
             </tr>
@@ -41,7 +41,7 @@
     <br/>
     <div>
         <h1>add user form</h1>
-        <form class="tg" action="#" th:action="@{/user-form.html/add}" th:object="${listUsers}" method="post">
+        <form class="tg" action="#" th:action="@{/user-form.html/add}" th:object="${user}" method="post">
             <p><input type="hidden" th:field="*{id}"/></p>
             <p>name: <input type="text" th:field="*{name}" required/></p>
             <p>login: <input type="text" th:field="*{login}" required/></p>
