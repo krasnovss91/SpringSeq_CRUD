@@ -28,17 +28,7 @@ public class PersistenceJPAConfig {
  @Autowired
  private Environment environment;
 
- /*
-    @Bean
-    public DataSource getDataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getProperty("db.driver"));
-        dataSource.setUrl(environment.getProperty("db.url"));
-        dataSource.setUsername(environment.getProperty("db.username"));
-        dataSource.setPassword(environment.getProperty("db.password"));
-        return dataSource;
-    }
-*/
+
  @Bean
  public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
      LocalContainerEntityManagerFactoryBean entityManagerFactoryBean
@@ -57,12 +47,9 @@ public class PersistenceJPAConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        //dataSource.setUrl("jdbc:mysql://localhost:3306/db_example&serverTimezone=UTC");// сюда Timezone
         dataSource.setUrl(environment.getProperty("db.url"));
         dataSource.setUsername(environment.getProperty("db.username"));
         dataSource.setPassword(environment.getProperty("db.password"));
-        //dataSource.setUsername("root");
-        //dataSource.setPassword("password");
         return dataSource;
     }
 
@@ -81,11 +68,8 @@ public class PersistenceJPAConfig {
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-       // properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");//избавиться от create-drop
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
-        properties.setProperty(
-                "hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
     }
 }

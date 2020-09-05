@@ -49,7 +49,7 @@ public class UserController {
         }else {
             userService.editUser(user);
         }
-        return "redirect/list-of-users";
+        return "user-form";
     }
 
     @GetMapping("/showUserForm")
@@ -75,14 +75,14 @@ public class UserController {
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") long id) {
        userService.deleteUser(id);
-       return "redirect/list-of-users";
+       return "user-form";
 
     }
 
     @GetMapping("/{id}")
     public String userData(@PathVariable long id, Model model) {
         model.addAttribute("user", this.userService.getUserById(id));
-        return "list-of-users";
+        return "user-form";
     }
 
 
