@@ -9,7 +9,7 @@
     <h1>Edit User</h1>
 
     <h1>list of users</h1>
-    <div th:if="${!listBook.isEmpty()}">
+    <div th:if="${!listUsers.isEmpty()}">
         <table class="tg" border="3">
             <tr>
                 <td width="80">id</td>
@@ -19,19 +19,19 @@
                 <td width="50">edit</td>
                 <td width="50">delete</td>
             </tr>
-            <th:block th:each="book : ${listBook}">
+            <th:block th:each="user : ${listUsers}">
                 <tr>
-                    <td th:text="${book.id}"></td>
+                    <td th:text="${user.id}"></td>
                     <td>
-                        <a th:href="@{/books/{id}(id=${book.id})}" th:text="${book.title}"></a>
+                        <a th:href="@{/list-of-users.html/{id}(id=${user.id})}" th:text="${user.name}"></a>
                     </td>
-                    <td th:text="${book.author}"></td>
-                    <td th:text="${book.price}"></td>
+                    <td th:text="${user.login}"></td>
+                    <td th:text="${user.password}"></td>
                     <td>
-                        <a th:href="@{/books/edit/{id}(id=${book.id})}">edit</a>
+                        <a th:href="@{/books/edit/{id}(id=${user.id})}">edit</a>
                     </td>
                     <td>
-                        <a th:href="@{/books/remove/{id}(id=${book.id})}">delete</a>
+                        <a th:href="@{/list-of-users.html/remove/{id}(id=${user.id})}">delete</a>
                     </td>
                 </tr>
             </th:block>
@@ -40,12 +40,12 @@
     <br/>
     <br/>
     <div>
-        <h1>add book form</h1>
+        <h1>add user form</h1>
         <form class="tg" action="#" th:action="@{/users/add}" th:object="${users}" method="post">
             <p><input type="hidden" th:field="*{id}"/></p>
-            <p>title: <input type="text" th:field="*{title}" required/></p>
-            <p>author: <input type="text" th:field="*{author}" required/></p>
-            <p>price: <input type="text" th:field="*{price}" required/></p>
+            <p>title: <input type="text" th:field="*{name}" required/></p>
+            <p>author: <input type="text" th:field="*{login}" required/></p>
+            <p>price: <input type="text" th:field="*{password}" required/></p>
             <p>
                 <input type="submit" value="Submit" />
                 <input type="reset" value="Reset" />
