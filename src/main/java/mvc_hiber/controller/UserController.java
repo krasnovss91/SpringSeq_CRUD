@@ -54,9 +54,8 @@ public class UserController {
 
     @GetMapping("/showUserForm")
     public String showUserForm(Model model) {
-      //  model.addAttribute("user", new User());
-        model.addAttribute("book", new User());
-        model.addAttribute("listBook", userService.getAllUsers());
+        model.addAttribute("user", new User());
+        model.addAttribute("listUsers", userService.getAllUsers());
         return "user-form";
     }
 
