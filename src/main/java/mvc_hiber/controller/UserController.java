@@ -49,7 +49,7 @@ public class UserController {
         }else {
             userService.editUser(user);
         }
-        return "user-form";
+        return "redirect:/user-form";
     }
 
     @GetMapping("/showUserForm")
@@ -65,18 +65,18 @@ public class UserController {
        User user = userService.getUserById(id);
        model.addAttribute("listUsers", this.userService.getAllUsers());
        model.addAttribute("user", user);
-       return "user-form";
+       return "redirect:/user-form";
    }
     @PostMapping("/edit")
     public String editUser(@ModelAttribute("editUser") User user) {
         userService.editUser(user);
-        return "redirect:/";
+        return "redirect:/user-form";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")//здесь ловит запрос с адреса
     public String deleteUser(@PathVariable("id") long id) {
        userService.deleteUser(id);
-       return "redirect/user-form";
+       return "redirect:/user-form";//сюда должен возвращать
 
     }
 
