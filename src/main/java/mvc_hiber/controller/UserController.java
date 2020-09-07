@@ -60,12 +60,12 @@ public class UserController {
     }
 
 
-   @GetMapping("/edit/{id}")//здесь та же проблема
+   @GetMapping("showUserForm/edit/{id}")//здесь та же проблема
    public String editUser(@PathVariable("id") int id, Model model) {
        User user = userService.getUserById(id);
        model.addAttribute("listUsers", this.userService.getAllUsers());
        model.addAttribute("user", user);
-       return "redirect:/user-form";
+       return "redirect:/showUserForm";
    }
    /*
     @PostMapping("/edit")
@@ -76,10 +76,10 @@ public class UserController {
 
     */
 
-    @GetMapping("/delete/{id}")//и здесь
+    @GetMapping("showUserForm/delete/{id}")//и здесь
     public String deleteUser(@PathVariable("id") long id) {
        userService.deleteUser(id);
-       return "redirect:/user-form";
+       return "redirect:/showUserForm";
 
     }
 
