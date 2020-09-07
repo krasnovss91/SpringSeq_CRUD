@@ -42,14 +42,14 @@ public class UserController {
         return "navigation";
     }
 
-    @PostMapping("/add")//должен ловить запрос с этого адреса
+    @PostMapping("showUserForm/add")//должен ловить запрос с этого адреса
     public String addUser(@ModelAttribute User user){
         if(user.getId() == 0){
             userService.saveUser(user);
         }else {
             userService.editUser(user);
         }
-        return "redirect:/user-form";//обрабатывать и возвращать сюда
+        return "redirect:/showUserForm";//обрабатывать и возвращать сюда
     }
 
     @GetMapping("/showUserForm")
