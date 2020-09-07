@@ -29,7 +29,7 @@ public class UserController {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
-
+ //проблемы на 31, 34 и 44 строках user-form.html
     @GetMapping("/list-of-users")
     public String showUsers(Model model) {// Этот контроллер работает исправно
         model.addAttribute("users", userService.getAllUsers());//вызов метода
@@ -42,14 +42,14 @@ public class UserController {
         return "navigation";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add")//должен ловить запрос с этого адреса
     public String addUser(@ModelAttribute User user){
         if(user.getId() == 0){
             userService.saveUser(user);
         }else {
             userService.editUser(user);
         }
-        return "redirect:/user-form";
+        return "redirect:/user-form";//обрабатывать и возвращать сюда
     }
 
     @GetMapping("/showUserForm")
@@ -60,23 +60,26 @@ public class UserController {
     }
 
 
-   @GetMapping("/edit/{id}")
+   @GetMapping("/edit/{id}")//здесь та же проблема
    public String editUser(@PathVariable("id") int id, Model model) {
        User user = userService.getUserById(id);
        model.addAttribute("listUsers", this.userService.getAllUsers());
        model.addAttribute("user", user);
        return "redirect:/user-form";
    }
+   /*
     @PostMapping("/edit")
     public String editUser(@ModelAttribute("editUser") User user) {
         userService.editUser(user);
         return "redirect:/user-form";
     }
 
-    @GetMapping("/delete/{id}")//здесь ловит запрос с адреса
+    */
+
+    @GetMapping("/delete/{id}")//и здесь
     public String deleteUser(@PathVariable("id") long id) {
        userService.deleteUser(id);
-       return "redirect:/user-form";//сюда должен возвращать
+       return "redirect:/user-form";
 
     }
 
