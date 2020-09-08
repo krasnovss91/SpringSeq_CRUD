@@ -54,7 +54,7 @@ public class UserController {
         return "redirect:/showUserForm";
     }
 
-    @GetMapping("/showUserForm")
+    @GetMapping("/showUserForm")//здесь все в порядке
     public String showUserForm(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", userService.getAllUsers());
@@ -67,6 +67,7 @@ public class UserController {
         User user = userService.getUserById(id);
         model.addAttribute("listUsers", this.userService.getAllUsers());
         model.addAttribute("user", user);
+        userService.editUser(user);
         return "redirect:/showUserForm";
     }
    /*
