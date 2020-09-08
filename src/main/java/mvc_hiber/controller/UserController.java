@@ -1,3 +1,5 @@
+
+
 package mvc_hiber.controller;
 
 
@@ -16,7 +18,7 @@ import javax.validation.Valid;
 
 @Controller
 public class UserController {
-   // @GetMapping(value = "navigation")
+    // @GetMapping(value = "navigation")
     private UserService userService;
 
     @Autowired
@@ -29,7 +31,7 @@ public class UserController {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
- //проблемы на 31, 34 и 44 строках user-form.html
+    //
     @GetMapping("/list-of-users")
     public String showUsers(Model model) {// Этот контроллер работает исправно
         model.addAttribute("users", userService.getAllUsers());//вызов метода
@@ -42,14 +44,14 @@ public class UserController {
         return "navigation";
     }
 
-    @PostMapping("showUserForm/add")//должен ловить запрос с этого адреса
+    @PostMapping("showUserForm/add")//здесь все работает правильно
     public String addUser(@ModelAttribute User user){
         if(user.getId() == 0){
             userService.saveUser(user);
         }else {
             userService.editUser(user);
         }
-        return "redirect:/showUserForm";//обрабатывать и возвращать сюда
+        return "redirect:/showUserForm";
     }
 
     @GetMapping("/showUserForm")
@@ -60,26 +62,25 @@ public class UserController {
     }
 
 
-   @GetMapping("showUserForm/edit/{id}")//здесь та же проблема
-   public String editUser(@PathVariable("id") int id, Model model) {
-       User user = userService.getUserById(id);
-       model.addAttribute("listUsers", this.userService.getAllUsers());
-       model.addAttribute("user", user);
-       return "redirect:/showUserForm";
-   }
+    @GetMapping("showUserForm/edit/{id}")//здесь та же проблема
+    public String editUser(@PathVariable("id") int id, Model model) {
+        User user = userService.getUserById(id);
+        model.addAttribute("listUsers", this.userService.getAllUsers());
+        model.addAttribute("user", user);
+        return "redirect:/showUserForm";
+    }
    /*
     @PostMapping("/edit")
     public String editUser(@ModelAttribute("editUser") User user) {
         userService.editUser(user);
         return "redirect:/user-form";
     }
-
     */
 
-    @GetMapping("showUserForm/delete/{id}")//и здесь
+    @GetMapping("showUserForm/delete/{id}")//и здесь все правильно
     public String deleteUser(@PathVariable("id") long id) {
-       userService.deleteUser(id);
-       return "redirect:/showUserForm";
+        userService.deleteUser(id);
+        return "redirect:/showUserForm";
 
     }
 
@@ -92,5 +93,3 @@ public class UserController {
 
 
 }
-
-
