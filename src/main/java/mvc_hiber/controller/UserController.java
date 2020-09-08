@@ -31,7 +31,7 @@ public class UserController {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
-    //26 и 31 строки user-form. на 26 вылетает showUsewForm/id, на 31 ничего не происходит
+    //проблема на 31 строке, где вызывается редактирование-ничего не происходит
     @GetMapping("/list-of-users")
     public String showUsers(Model model) {// Этот контроллер работает исправно
         model.addAttribute("users", userService.getAllUsers());//вызов метода
@@ -62,7 +62,7 @@ public class UserController {
     }
 
 
-    @GetMapping("showUserForm/edit/{id}")//здесь та же проблема
+    @GetMapping("showUserForm/edit/{id}")//попытался реализовать также, как в случае удаления
     public String editUser(@PathVariable("id") int id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("listUsers", this.userService.getAllUsers());
