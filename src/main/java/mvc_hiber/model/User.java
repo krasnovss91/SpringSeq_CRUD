@@ -26,13 +26,13 @@ public class User {
 
     }
 
-    public User(String name, String login, String password, String role) {
+    public User(String name, String login, String password) {
         this.name = name;
         this.login = login;
         this.password = password;
     }
 
-    public User(long id, String name, String login, String password, String role) {
+    public User(long id, String name, String login, String password) {
         this.id = id;
         this.name = name;
         this.login = login;
