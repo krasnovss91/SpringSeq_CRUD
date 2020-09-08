@@ -31,7 +31,7 @@ public class UserController {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
-    //
+    //26 и 31 строки user-form. на 26 вылетает showUsewForm/id, на 31 ничего не происходит
     @GetMapping("/list-of-users")
     public String showUsers(Model model) {// Этот контроллер работает исправно
         model.addAttribute("users", userService.getAllUsers());//вызов метода
