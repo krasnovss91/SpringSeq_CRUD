@@ -25,7 +25,6 @@ public class UserDaoImpl implements UserDao {
 
         return entityManager.find(User.class, id);
 
-
     }
 
     @Override
@@ -46,7 +45,6 @@ public class UserDaoImpl implements UserDao {
         if (userToBeDeleted != null) {
             entityManager.remove(userToBeDeleted);
         }
-
 
     }
 
