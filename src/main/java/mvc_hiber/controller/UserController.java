@@ -45,6 +45,7 @@ public class UserController {
     @PostMapping("showUserForm/add")//здесь все работает правильно
     public String addUser(@ModelAttribute User user){
         if(user.getId() == 0){
+           // userService.saveUser(user(user.getName(),user.getLogin(),user.getPassword()));
             userService.saveUser(user);
         }else {
             userService.editUser(user);
@@ -55,8 +56,9 @@ public class UserController {
     @GetMapping("/showUserForm")//здесь все в порядке
     public String showUserForm(Model model) {
         model.addAttribute("user", new User());
+       // model.addAttribute("user", new User(String name, String login, String password));
         model.addAttribute("listUsers", userService.getAllUsers());
-        return "user-form";
+        return "user-form";//возвращает страницу
     }
 
 

@@ -59,7 +59,7 @@ public class User {
         return login;
     }
 
-    public void setLogin(String name) {
+    public void setLogin(String login) {
         this.login = login;
     }
 
