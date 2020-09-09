@@ -44,11 +44,11 @@ public class UserController {
 
     @PostMapping("showUserForm/add")//здесь все работает правильно
     public String addUser(@ModelAttribute User user){
-        if(user.getId() == 0){
+        if(user.getId() == 0){//
            // userService.saveUser(user(user.getName(),user.getLogin(),user.getPassword()));
             userService.saveUser(user);
         }else {
-            userService.editUser(user);
+            userService.editUser(user);//если пользователь есть, то вызываем метод редактирования
         }
         return "redirect:/showUserForm";
     }
@@ -56,18 +56,17 @@ public class UserController {
     @GetMapping("/showUserForm")//здесь все в порядке
     public String showUserForm(Model model) {
         model.addAttribute("user", new User());
-       // model.addAttribute("user", new User(String name, String login, String password));
         model.addAttribute("listUsers", userService.getAllUsers());
         return "user-form";//возвращает страницу
     }
 
 
-        @GetMapping("/edit/{id}")
-        public String updateBook(@PathVariable long id, Model model) {
-            model.addAttribute("user", this.userService.getUserById(id));
+        @GetMapping("/edit/{id}")//сделал по аналогии с удалением, где все удачно работает. 31 строка user-form
+        public String editUser(@PathVariable long id, Model model) {
+            model.addAttribute("user", this.userService.getUserById(id));//здесь ставил брейкпойнт, досюда даже не доходит
             model.addAttribute("listUsers", this.userService.getAllUsers());
           //  return "user-form";
-            return "showUserForm/add";
+            return "showUserForm/add";//перенаправление на метод добавления
         }
      /*
     @GetMapping("showUserForm/edit/{id}")//попытался реализовать также, как в случае удаления
