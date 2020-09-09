@@ -62,6 +62,14 @@ public class UserController {
     }
 
 
+        @GetMapping("/edit/{id}")
+        public String updateBook(@PathVariable long id, Model model) {
+            model.addAttribute("user", this.userService.getUserById(id));
+            model.addAttribute("listUsers", this.userService.getAllUsers());
+          //  return "user-form";
+            return "showUserForm/add";
+        }
+     /*
     @GetMapping("showUserForm/edit/{id}")//попытался реализовать также, как в случае удаления
     public String editUser(@PathVariable("id") int id, Model model) {
         User user = userService.getUserById(id);
