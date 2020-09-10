@@ -61,12 +61,12 @@ public class UserController {
     }
 
 
-        @GetMapping("/edit/{id}")//сделал по аналогии с удалением, где все удачно работает. 31 строка user-form
+        @GetMapping("showUserForm/edit/{id}")//сделал по аналогии с удалением, где все удачно работает. 31 строка user-form
         public String editUser(@PathVariable long id, Model model) {
             model.addAttribute("user", this.userService.getUserById(id));//здесь ставил брейкпойнт, досюда даже не доходит
             model.addAttribute("listUsers", this.userService.getAllUsers());
           //  return "user-form";
-            return "showUserForm/add";//перенаправление на метод добавления
+            return "redirect:/showUserForm/add";//перенаправление на метод добавления
         }
      /*
     @GetMapping("showUserForm/edit/{id}")//попытался реализовать также, как в случае удаления
