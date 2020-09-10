@@ -61,8 +61,8 @@ public class UserController {
     }
 
 
-        //@GetMapping("showUserForm/edit/{id}")//сделал по аналогии с удалением, где все удачно работает. 31 строка user-form
-        @PostMapping("showUserForm/edit/{id}")
+        @GetMapping("showUserForm/edit/{id}")//сделал по аналогии с удалением, где все удачно работает. 31 строка user-form
+       // @PostMapping("showUserForm/edit/{id}")
         public String editUser(@PathVariable long id, Model model) {
             model.addAttribute("user", this.userService.getUserById(id));//здесь ставил брейкпойнт, досюда даже не доходит
             model.addAttribute("listUsers", this.userService.getAllUsers());
