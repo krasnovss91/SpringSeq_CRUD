@@ -42,7 +42,9 @@ public class UserController {
         return "navigation";
     }
 
-    @PostMapping("showUserForm/add")//здесь все работает правильно
+   // @RequestMapping("showUserForm/add)")
+    //@PostMapping("showUserForm/add")//здесь все работает правильно
+   @GetMapping("showUserForm/add") 
     public String addUser(@ModelAttribute User user){
         if(user.getId() == 0){//
            // userService.saveUser(user(user.getName(),user.getLogin(),user.getPassword()));
@@ -60,8 +62,8 @@ public class UserController {
         return "user-form";//возвращает страницу
     }
 
-
-        @GetMapping("showUserForm/edit/{id}")//сделал по аналогии с удалением, где все удачно работает. 31 строка user-form
+         //@RequestMapping("showUserForm/edit/{id}")
+       @GetMapping("showUserForm/edit/{id}")//сделал по аналогии с удалением, где все удачно работает. 31 строка user-form
        // @PostMapping("showUserForm/edit/{id}")
         public String editUser(@PathVariable long id, Model model) {
             model.addAttribute("user", this.userService.getUserById(id));//здесь ставил брейкпойнт, досюда даже не доходит
