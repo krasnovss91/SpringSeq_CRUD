@@ -67,13 +67,20 @@ public class UserController {
    */
     @GetMapping("showUserForm/edit/{id}")
     public String editUser(@PathVariable long id, Model model) {
-        User user = userService.getUserById(id);
-        model.addAttribute("user", this.userService.getUserById(id));
-        model.addAttribute("listUsers", this.userService.getAllUsers());
+        //User user = userService.getUserById(id);
+        model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("listUsers",userService.getAllUsers());
+       // userService.editUser(user);
+
       //  model.addAttribute("user", user);
        // userService.editUser(user);
        // return "redirect:/showUserForm/add";
         return "edit-user";
+    }
+    @PostMapping("edit-user")
+    public String editUser(@ModelAttribute("editUser") User user) {
+        userService.editUser(user);
+        return "redirect:/showUserForm";//как в добавлении
     }
 
      /*
