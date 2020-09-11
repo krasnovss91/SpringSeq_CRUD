@@ -70,10 +70,10 @@ public class UserController {
         User user = userService.getUserById(id);
         model.addAttribute("user", this.userService.getUserById(id));
         model.addAttribute("listUsers", this.userService.getAllUsers());
-        model.addAttribute("user", user);
-        userService.editUser(user);
+      //  model.addAttribute("user", user);
+       // userService.editUser(user);
        // return "redirect:/showUserForm/add";
-        return "redirect:/showUserForm";
+        return "edit-user";
     }
 
      /*
