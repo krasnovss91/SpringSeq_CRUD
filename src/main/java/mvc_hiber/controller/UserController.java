@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 
 @Controller
@@ -29,6 +26,7 @@ public class UserController {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
+
     //проблема на 31 строке, где вызывается редактирование-ничего не происходит
     @GetMapping("/list-of-users")
     public String showUsers(Model model) {// Этот контроллер работает исправно
@@ -37,20 +35,18 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public String showAll(Model model){
-        model.addAttribute("users",userService.getAllUsers());
+    public String showAll(Model model) {
+        model.addAttribute("users", userService.getAllUsers());
         return "navigation";
     }
 
-   // @RequestMapping("showUserForm/add)")
-    //@PostMapping("showUserForm/add")//здесь все работает правильно
-   @GetMapping("showUserForm/add") 
-    public String addUser(@ModelAttribute User user){
-        if(user.getId() == 0){//
-           // userService.saveUser(user(user.getName(),user.getLogin(),user.getPassword()));
+
+    @PostMapping("showUserForm/add")
+    public String addUser(@ModelAttribute User user) {
+        if (user.getId() == 0) {
             userService.saveUser(user);
-        }else {
-            userService.editUser(user);//если пользователь есть, то вызываем метод редактирования
+        } else {
+            userService.editUser(user);
         }
         return "redirect:/showUserForm";
     }
@@ -62,15 +58,19 @@ public class UserController {
         return "user-form";//возвращает страницу
     }
 
-         //@RequestMapping("showUserForm/edit/{id}")
-       @GetMapping("showUserForm/edit/{id}")//сделал по аналогии с удалением, где все удачно работает. 31 строка user-form
-       // @PostMapping("showUserForm/edit/{id}")
+    @PostMapping("showUserForm/edit")//с id нужен get
+    public String editUser(@ModelAttribute("editUser") User user) {
+        userService.editUser(user);
+        return "redirect:/showUserForm";//как в добавлении
+    }
+
+       @GetMapping("showUserForm/edit/{id}")
         public String editUser(@PathVariable long id, Model model) {
-            model.addAttribute("user", this.userService.getUserById(id));//здесь ставил брейкпойнт, досюда даже не доходит
+            model.addAttribute("user", this.userService.getUserById(id));
             model.addAttribute("listUsers", this.userService.getAllUsers());
-          //  return "user-form";
-            return "redirect:/showUserForm/add";//перенаправление на метод добавления
+            return "redirect:/showUserForm/add";
         }
+
      /*
     @GetMapping("showUserForm/edit/{id}")//попытался реализовать также, как в случае удаления
     public String editUser(@PathVariable("id") int id, Model model) {
@@ -100,7 +100,6 @@ public class UserController {
         model.addAttribute("user", this.userService.getUserById(id));
         return "list-of-users";
     }
-
 
 
 }

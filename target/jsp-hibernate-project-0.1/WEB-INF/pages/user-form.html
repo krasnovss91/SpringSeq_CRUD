@@ -28,7 +28,7 @@
                     <td th:text="${user.login}"></td>
                     <td th:text="${user.password}"></td>
                     <td>
-                        <a th:href="@{/showUserForm/edit/{id}(id=${user.id})}">edit</a>
+                        <a th:href="@{showUserForm/edit}">edit</a>
                     </td>
                     <td>
                         <a th:href="@{/showUserForm/delete/{id}(id=${user.id})}">delete</a>
