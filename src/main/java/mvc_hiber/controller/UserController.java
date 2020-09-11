@@ -58,18 +58,23 @@ public class UserController {
         return "user-form";//возвращает страницу
     }
 
-    @PostMapping("showUserForm/edit")//с id нужен get
-    public String editUser(@ModelAttribute("editUser") User user) {
+    /*
+       @PostMapping("showUserForm/edit")//с id нужен get
+       public String editUser(@ModelAttribute("editUser") User user) {
+           userService.editUser(user);
+           return "redirect:/showUserForm";//как в добавлении
+       }
+   */
+    @GetMapping("showUserForm/edit/{id}")
+    public String editUser(@PathVariable long id, Model model) {
+        User user = userService.getUserById(id);
+        model.addAttribute("user", this.userService.getUserById(id));
+        model.addAttribute("listUsers", this.userService.getAllUsers());
+        model.addAttribute("user", user);
         userService.editUser(user);
-        return "redirect:/showUserForm";//как в добавлении
+       // return "redirect:/showUserForm/add";
+        return "redirect:/showUserForm";
     }
-
-       @GetMapping("showUserForm/edit/{id}")
-        public String editUser(@PathVariable long id, Model model) {
-            model.addAttribute("user", this.userService.getUserById(id));
-            model.addAttribute("listUsers", this.userService.getAllUsers());
-            return "redirect:/showUserForm/add";
-        }
 
      /*
     @GetMapping("showUserForm/edit/{id}")//попытался реализовать также, как в случае удаления
@@ -80,12 +85,8 @@ public class UserController {
         userService.editUser(user);
         return "redirect:/showUserForm";
     }
-   /*
-    @PostMapping("/edit")
-    public String editUser(@ModelAttribute("editUser") User user) {
-        userService.editUser(user);
-        return "redirect:/user-form";
-    }
+
+
     */
 
     @GetMapping("showUserForm/delete/{id}")//и здесь все правильно
