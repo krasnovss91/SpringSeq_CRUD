@@ -58,7 +58,7 @@ public class UserController {
         return "user-form";//возвращает страницу
     }
 
-
+   //А что если этот адрес на 11 строку?
     @GetMapping("showUserForm/edit/{id}")//При нажатии на кнопку перенаправляет на несуществующий адрес на 11 сроке edit-user (http://localhost:8080/jsp_hibernate_project_war_exploded/showUserForm/edit/edit-user/edit)
     public String editUser(@PathVariable long id, Model model) {
         //User user = userService.getUserById(id);
