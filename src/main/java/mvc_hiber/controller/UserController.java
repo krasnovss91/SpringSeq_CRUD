@@ -40,7 +40,7 @@ public class UserController {
         return "navigation";
     }
 
-
+                 //showUserForm/add
     @PostMapping("showUserForm/add")
     public String addUser(@ModelAttribute User user) {
         if (user.getId() == 0) {
@@ -59,19 +59,19 @@ public class UserController {
     }
 
 
-    @GetMapping("showUserForm/edit/{id}")//2 раза перенаправляется на showUserForm/edit. Этот же адрес на 11 строке edit-user
+    @GetMapping("showUserForm/edit/{id}")//При нажатии на кнопку перенаправляет на несуществующий адрес на 11 сроке edit-user (http://localhost:8080/jsp_hibernate_project_war_exploded/showUserForm/edit/edit-user/edit)
     public String editUser(@PathVariable long id, Model model) {
         //User user = userService.getUserById(id);
         model.addAttribute("user", userService.getUserById(id));
         model.addAttribute("listUsers",userService.getAllUsers());
-       // userService.editUser(user);
 
+       // userService.editUser(user);
       //  model.addAttribute("user", user);
        // userService.editUser(user);
-       // return "redirect:/showUserForm/add";
-        return "edit-user";
+       // return "redirect:/showUserForm";
+        return "edit-user";//этот метод просто возвращает страницу для редактирования, успешно отрабатывает
     }
-    @PostMapping("edit-user")
+    @PostMapping("edit-user/edit")
     public String editUser(@ModelAttribute("editUser") User user) {
         userService.editUser(user);//сюда даже не долетает при нажатии на редактирование
         return "redirect:/showUserForm";//как в добавлении
