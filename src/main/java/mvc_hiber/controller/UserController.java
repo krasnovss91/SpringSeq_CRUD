@@ -58,14 +58,8 @@ public class UserController {
         return "user-form";//возвращает страницу
     }
 
-    /*
-       @PostMapping("showUserForm/edit")//с id нужен get
-       public String editUser(@ModelAttribute("editUser") User user) {
-           userService.editUser(user);
-           return "redirect:/showUserForm";//как в добавлении
-       }
-   */
-    @GetMapping("showUserForm/edit/{id}")
+
+    @GetMapping("showUserForm/edit/{id}")//2 раза перенаправляется на showUserForm/edit. Этот же адрес на 11 строке edit-user
     public String editUser(@PathVariable long id, Model model) {
         //User user = userService.getUserById(id);
         model.addAttribute("user", userService.getUserById(id));
@@ -79,7 +73,7 @@ public class UserController {
     }
     @PostMapping("edit-user")
     public String editUser(@ModelAttribute("editUser") User user) {
-        userService.editUser(user);
+        userService.editUser(user);//сюда даже не долетает при нажатии на редактирование
         return "redirect:/showUserForm";//как в добавлении
     }
 
