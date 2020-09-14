@@ -71,6 +71,7 @@ public class UserController {
        // return "redirect:/showUserForm";
         return "edit-user";//этот метод просто возвращает страницу для редактирования, успешно отрабатывает
     }
+                 //showUserForm/edit/{id}
     @PostMapping("showUserForm/edit/{id}/edit")
     public String editUser(@ModelAttribute("editUser") User user) {
         userService.editUser(user);//сюда даже не долетает при нажатии на редактирование
