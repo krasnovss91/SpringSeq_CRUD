@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
-    // @GetMapping(value = "navigation")
     private UserService userService;
 
     @Autowired
@@ -27,11 +26,10 @@ public class UserController {
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
-    //проблема на 31 строке, где вызывается редактирование-ничего не происходит
     @GetMapping("/list-of-users")
-    public String showUsers(Model model) {// Этот контроллер работает исправно
-        model.addAttribute("users", userService.getAllUsers());//вызов метода
-        return "list-of-users";//страница, которую возвращаем
+    public String showUsers(Model model) {
+        model.addAttribute("users", userService.getAllUsers());
+        return "list-of-users";
     }
 
     @GetMapping("/")
@@ -40,7 +38,7 @@ public class UserController {
         return "navigation";
     }
 
-                 //showUserForm/add
+
     @PostMapping("showUserForm/add")
     public String addUser(@ModelAttribute User user) {
         if (user.getId() == 0) {
@@ -51,48 +49,31 @@ public class UserController {
         return "redirect:/showUserForm";
     }
 
-    @GetMapping("/showUserForm")//здесь все в порядке
+    @GetMapping("/showUserForm")
     public String showUserForm(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", userService.getAllUsers());
-        return "user-form";//возвращает страницу
+        return "user-form";
     }
 
-   //А что если этот адрес на 11 строку?
-    @GetMapping("showUserForm/edit/{id}")//При нажатии на кнопку перенаправляет на несуществующий адрес на 11 сроке edit-user (http://localhost:8080/jsp_hibernate_project_war_exploded/showUserForm/edit/edit-user/edit)
+    @GetMapping("showUserForm/edit/{id}")
     public String editUser(@PathVariable long id, Model model) {
-        //User user = userService.getUserById(id);
+
         model.addAttribute("user", userService.getUserById(id));
-        model.addAttribute("listUsers",userService.getAllUsers());
+        model.addAttribute("listUsers", userService.getAllUsers());
 
-       // userService.editUser(user);
-      //  model.addAttribute("user", user);
-       // userService.editUser(user);
-       // return "redirect:/showUserForm";
-        return "edit-user";//этот метод просто возвращает страницу для редактирования, успешно отрабатывает
+
+        return "edit-user";
     }
-                 //showUserForm/edit/{id}
-   // @PostMapping("showUserForm/edit")
-                 @PostMapping("showUserForm/edit/showUserForm/edit")
+
+    @PostMapping("showUserForm/edit/showUserForm/edit")
     public String editUser(@ModelAttribute("editUser") User user) {
-        userService.editUser(user);//сюда даже не долетает при нажатии на редактирование
-        return "redirect:/showUserForm";//как в добавлении
-    }
-
-     /*
-    @GetMapping("showUserForm/edit/{id}")//попытался реализовать также, как в случае удаления
-    public String editUser(@PathVariable("id") int id, Model model) {
-        User user = userService.getUserById(id);
-        model.addAttribute("listUsers", this.userService.getAllUsers());
-        model.addAttribute("user", user);
         userService.editUser(user);
         return "redirect:/showUserForm";
     }
 
 
-    */
-
-    @GetMapping("showUserForm/delete/{id}")//и здесь все правильно
+    @GetMapping("showUserForm/delete/{id}")
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
         return "redirect:/showUserForm";
