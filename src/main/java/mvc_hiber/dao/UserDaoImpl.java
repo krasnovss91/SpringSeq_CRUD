@@ -1,6 +1,7 @@
 package mvc_hiber.dao;
 
 import mvc_hiber.model.User;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -14,6 +15,7 @@ public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
     EntityManager entityManager;
+    SessionFactory sessionFactory;
 
 
     @Override

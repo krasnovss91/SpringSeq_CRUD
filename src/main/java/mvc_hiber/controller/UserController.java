@@ -53,7 +53,7 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("registration") User user) {
 
-        userService.addUser(user);
+        userService.saveUser(User user);
         return "redirect:/";
     }
 
@@ -65,7 +65,7 @@ public class UserController {
             return "registration";
         }
 
-        userService.save(userForm);
+        userService.saveUser(userForm);
 
         securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
 
@@ -85,7 +85,7 @@ public class UserController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String updateUser(@ModelAttribute("user") User user, Model model) {
-        userService.updateUser(user);
+        userService.editUser(User(user));
         model.addAttribute("allUsers", userService.getAllUsers());// ? а зачем - в риде должно быть
         // return "redirect:/read";
         return "read";
