@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import mvc_hiber.model.User;
-import task5.spring.service.SecurityService;
+import mvc_hiber.service.SecurityService;
 import mvc_hiber.service.UserService;
 import mvc_hiber.validator.UserValidator;
 
