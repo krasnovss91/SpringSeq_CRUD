@@ -86,7 +86,7 @@ public class UserController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String updateUser(@ModelAttribute("user") User user, Model model) {
         userService.editUser(User(user));
-        model.addAttribute("allUsers", userService.getAllUsers());// ? а зачем - в риде должно быть
+        model.addAttribute("allUsers", userService.getAllUsers());
         // return "redirect:/read";
         return "read";
     }

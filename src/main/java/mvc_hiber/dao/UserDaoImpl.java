@@ -40,7 +40,6 @@ public class UserDaoImpl implements UserDao {
         System.out.println("List<User> users = new ArrayList<>();");
         List<User> users = new ArrayList<>();
         System.out.println("List<User> users = " + users);
-        //обращаемся на HQL к сущности, а не к таблице
         users = sessionFactory.getCurrentSession().createQuery("from User where username=?").setParameter(0, username).list();
         System.out.println("List<User> users = " + users);
         if (users.size() > 0) {

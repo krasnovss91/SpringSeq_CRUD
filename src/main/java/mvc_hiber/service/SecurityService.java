@@ -1,4 +1,4 @@
-package task5.spring.service;
+package mvc_hiber.service;
 
 
 

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service("securityService")
-public class SecurityServiceImpl implements task5.spring.service.SecurityService {
+public class SecurityServiceImpl implements mvc_hiber.service.SecurityService {
 
  //   private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
 
@@ -33,10 +33,8 @@ public class SecurityServiceImpl implements task5.spring.service.SecurityService
 
     @Override
     public String findLoggedInUsername() {
-        //объект содержит данные по юзеру
         Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
         if (userDetails instanceof UserDetails) {
-            //получаю имя, залогиненного пользователя
             return ((UserDetails) userDetails).getUsername();
         }
 
@@ -45,13 +43,11 @@ public class SecurityServiceImpl implements task5.spring.service.SecurityService
 
     @Override
     public void autoLogin(String username, String password) {
-       //экземпляр юзерДетэйлс
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
-//ауторизация
         authenticationManager.authenticate(authenticationToken);
-//если токен ауторизован, то залогирование
+
         if (authenticationToken.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
