@@ -53,7 +53,7 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("registration") User user) {
 
-        userService.saveUser(User user);
+        userService.saveUser(user);
         return "redirect:/";
     }
 
@@ -85,7 +85,7 @@ public class UserController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String updateUser(@ModelAttribute("user") User user, Model model) {
-        userService.editUser(User(user));
+        userService.editUser(user);
         model.addAttribute("allUsers", userService.getAllUsers());
         // return "redirect:/read";
         return "read";
