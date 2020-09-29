@@ -39,7 +39,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //создаю новый сет разрешений
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         System.out.println("grantedAuthorities ------ " + grantedAuthorities);
-//в цикле дабавлюя в разрешения пользователя все роли, которые храняться в БД
+//в цикле добавлются в разрешения пользователя все роли, которые храняться в БД
         for (Role role : user.getRoles()) {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
