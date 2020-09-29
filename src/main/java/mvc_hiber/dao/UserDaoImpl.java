@@ -1,6 +1,7 @@
 package mvc_hiber.dao;
 
 import mvc_hiber.model.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
@@ -36,7 +37,9 @@ public class UserDaoImpl implements UserDao {
     }
     @Override
     public User findByUsername(String username) {
-
+        Session session = this.sessionFactory.getCurrentSession();
+        return (User) session.load(User.class, username);
+   /*
         System.out.println("List<User> users = new ArrayList<>();");
         List<User> users = new ArrayList<>();
         System.out.println("List<User> users = " + users);
@@ -47,7 +50,7 @@ public class UserDaoImpl implements UserDao {
         } else {
             return null;
         }
-
+ */
     }
 
 
