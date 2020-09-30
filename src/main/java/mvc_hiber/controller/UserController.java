@@ -69,7 +69,7 @@ public class UserController {
 
         securityService.autoLogin(userForm.getName(), userForm.getConfirmPassword());
 
-        return "redirect:/welcome";
+        return "redirect:/navigation";
     }
 
 
