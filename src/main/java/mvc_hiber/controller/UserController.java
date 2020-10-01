@@ -43,7 +43,7 @@ public class UserController {
         model.addAttribute("allUsers", userService.getAllUsers());
         return "read";
     }
-
+ /*
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String addPage(@ModelAttribute("registration") User user, Model model) {
         model.addAttribute("user", new User());
@@ -72,7 +72,7 @@ public class UserController {
         return "redirect:/navigation";
     }
 
-
+*/
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public ModelAndView updatePage(@PathVariable("id") int id) {
