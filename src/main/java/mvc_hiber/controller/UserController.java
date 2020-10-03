@@ -31,7 +31,7 @@ public class UserController {
 
 
     @Deprecated
-
+//Добавить маппинг на страницу login
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String readUserList(Model model) {
         model.addAttribute("allUsers", userService.getAllUsers());
