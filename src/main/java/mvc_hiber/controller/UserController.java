@@ -115,7 +115,7 @@ public class UserController {
         return "read";
     }
 
-
+/*
     @RequestMapping(value = {"/","/login"}, method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null) {
@@ -125,16 +125,18 @@ public class UserController {
         if (logout != null) {
             model.addAttribute("message", "Logged out successfully.");
         }
-
+        
         return "login";
     }
 
-    /*
+    */
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
-    public String login(Model model) {
+    public String login(User user) {
+        //распознать-юзер или админ
+        //if(user.getRole() == "admin")
         return "login";
     }
-*/
+
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model) {
         return "admin";
