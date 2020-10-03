@@ -110,7 +110,7 @@ public class UserController {
     @RequestMapping(value = "/admin/delete", method = RequestMethod.POST)
     public String deleteUser(@ModelAttribute("user") User user, Model model) {
         userService.deleteUser(user.getId());
-        model.addAttribute("allUsers", userService.getAllUsers()); // ? а зачем - в риде должно быть
+        model.addAttribute("allUsers", userService.getAllUsers());
         //  return "redirect:/read";
         return "read";
     }
