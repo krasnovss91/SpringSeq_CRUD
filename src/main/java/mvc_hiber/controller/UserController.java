@@ -129,9 +129,9 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String welcome(Model model) {
-        return "welcome";
+        return "login";
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
