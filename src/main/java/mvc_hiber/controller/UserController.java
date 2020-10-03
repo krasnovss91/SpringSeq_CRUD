@@ -32,13 +32,13 @@ public class UserController {
 
     @Deprecated
 //Добавить маппинг на страницу login
-
+/*
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String addPage(@ModelAttribute("login") User user, Model model) {
         model.addAttribute("user", new User());
         return "login";
     }
-/*
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String readUserList(Model model) {
         model.addAttribute("allUsers", userService.getAllUsers());
