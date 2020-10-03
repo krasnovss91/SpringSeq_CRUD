@@ -116,7 +116,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = {"/","/login"}, method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null) {
             model.addAttribute("error", "Username or password is incorrect.");
@@ -129,11 +129,12 @@ public class UserController {
         return "login";
     }
 
+    /*
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String login(Model model) {
         return "login";
     }
-
+*/
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model) {
         return "admin";
