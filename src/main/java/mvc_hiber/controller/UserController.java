@@ -35,7 +35,7 @@ public class UserController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String readUserList(Model model) {
         model.addAttribute("allUsers", userService.getAllUsers());
-        return "read";
+        return "navigation";
     }
 
     @RequestMapping(value = "/read", method = RequestMethod.GET)
@@ -74,7 +74,7 @@ public class UserController {
 
 */
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/update/{id}", method = RequestMethod.GET)
     public ModelAndView updatePage(@PathVariable("id") int id) {
         User user = userService.getUserById(id);
         ModelAndView modelAndView = new ModelAndView();
@@ -83,7 +83,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/update", method = RequestMethod.POST)
     public String updateUser(@ModelAttribute("user") User user, Model model) {
         userService.editUser(user);
         model.addAttribute("allUsers", userService.getAllUsers());
@@ -92,7 +92,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.GET)
     public String deleteUserPage(@PathVariable("id") long id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
@@ -100,7 +100,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/delete", method = RequestMethod.POST)
     public String deleteUser(@ModelAttribute("user") User user, Model model) {
         userService.deleteUser(user.getId());
         model.addAttribute("allUsers", userService.getAllUsers()); // ? а зачем - в риде должно быть
