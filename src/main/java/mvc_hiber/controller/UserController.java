@@ -132,8 +132,7 @@ public class UserController {
     */
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String login(User user) {
-        //распознать-юзер или админ
-        //if(user.getRole() == "admin")
+
         return "login";
     }
 

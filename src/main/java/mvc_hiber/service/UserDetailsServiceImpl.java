@@ -33,7 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("UserDetailsServiceImpl implements UserDetailsService - v metode loadUserByUsername -  User user = userDao.findByUsername(username);" );
+        System.out.println("UserDetailsServiceImpl implements UserDetailsService - in method loadUserByUsername -  User user = userDao.findByUsername(username);" );
         User user = userDao.findByUsername(username);
         System.out.println("user ----- " + user);
 //создаю новый сет разрешений
