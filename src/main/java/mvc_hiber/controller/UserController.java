@@ -45,11 +45,14 @@ public class UserController {
         return "navigation";
     }
  */
-    @RequestMapping(value = "/read", method = RequestMethod.GET)
-    public String readUserList2(Model model) {
+
+    @RequestMapping(value = "/admin/read", method = RequestMethod.GET)
+    public String readUserList(Model model) {
         model.addAttribute("allUsers", userService.getAllUsers());
         return "read";
     }
+
+
  /*
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String addPage(@ModelAttribute("registration") User user, Model model) {

@@ -54,9 +54,9 @@ public class UserAuthenticationSuccessHandler implements AuthenticationSuccessHa
         }
 
         if (isUser) {
-            return "/user/user";
+            return "/user/read";
         } else if (isAdmin) {
-            return "/admin/read";
+            return "/admin";
         } else {
             throw new IllegalStateException();
         }
