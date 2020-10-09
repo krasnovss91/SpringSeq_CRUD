@@ -35,13 +35,12 @@ public class UserDaoImpl implements UserDao {
         return entityManager.createQuery("select e from User e", User.class).getResultList();
     }
     @Override
-    public User findByUsername(String name) {
+    public User findByUsername(String username) {
 
-       // return entityManager.find(User.class, username);
-     Session session = this.sessionFactory.getCurrentSession();
-        return (User) session.get(User.class, name);
-
-       /*   System.out.println("List<User> users = new ArrayList<>();");
+     //   return entityManager.find(User.class, name);
+      // return (User) session.load(User.class, name);
+/*
+        System.out.println("List<User> users = new ArrayList<>();");
         List<User> users = new ArrayList<>();
         System.out.println("List<User> users = " + users);
         users = sessionFactory.getCurrentSession().createQuery("from User where username=?").setParameter(0, username).list();
@@ -52,6 +51,7 @@ public class UserDaoImpl implements UserDao {
             return null;
         }
  */
+        
     }
 
 
