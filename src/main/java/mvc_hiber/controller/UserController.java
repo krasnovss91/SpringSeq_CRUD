@@ -141,6 +141,7 @@ public class UserController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model) {
+
         return "admin";
     }
 
