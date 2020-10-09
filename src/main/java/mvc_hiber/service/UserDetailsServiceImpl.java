@@ -35,6 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("UserDetailsServiceImpl implements UserDetailsService - in method loadUserByUsername -  User user = userDao.findByUsername(username);" );
         User user = userDao.findByUsername(username);
+        //User user = userDao.getUserById()
         System.out.println("user ----- " + user);
 //создаю новый сет разрешений
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();

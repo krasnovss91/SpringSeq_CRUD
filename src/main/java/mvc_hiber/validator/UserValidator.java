@@ -35,8 +35,16 @@ public class UserValidator implements Validator {
             errors.rejectValue("username", "Size.userForm.username");
         }
 
+        /*
         if (userService.findUserByName(user.getName()) != null) {
             errors.rejectValue("username", "Duplicate.userForm.username");
+        }
+       */
+        if (userService.getUserById(user.getId()) == null)
+        {
+            
+            //вернуть как было
+          //  errors.rejectValue("username", "User not found");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "Required");
