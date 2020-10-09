@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 
@@ -50,8 +51,11 @@ public class UserDaoImpl implements UserDao {
         } else {
             return null;
         }
+
  */
-        
+        String hql ="FROM User WHERE name=:name";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql).setParameter("name",username);
+        return (User) query.getSingleResult();
     }
 
 
