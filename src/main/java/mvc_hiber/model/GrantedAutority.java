@@ -11,7 +11,7 @@ public interface GrantedAutority {
 
     void setName(String name);
 
-    Set<User> getUsers(Set<User> users);
+    public void setUsers(Set<User> users);
 
     String toString();
 }

@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "roles")
-public class Role {
+public class Role implements GrantedAutority{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
