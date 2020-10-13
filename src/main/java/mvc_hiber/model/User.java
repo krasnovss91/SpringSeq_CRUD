@@ -5,7 +5,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users_sec")
-public class User {
+public class User  implements UserDetails{
 
     @Id
     @Column(name = "id")
