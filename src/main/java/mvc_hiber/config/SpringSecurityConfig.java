@@ -26,7 +26,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         //return new BCryptPasswordEncoder();
-        return NoOpPasswordEncoder.getInstance();
+        return NoOpPasswordEncoder.getInstance();//java.lang.NoClassDefFoundError: org/springframework/security/converter/RsaKeyConverters
     }
 
     @Bean
