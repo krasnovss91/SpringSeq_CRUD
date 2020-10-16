@@ -84,7 +84,6 @@
     <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.8.10" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:jcl-over-slf4j:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:4.2.13.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.4.1" level="project" />
   </component>
 </module>
