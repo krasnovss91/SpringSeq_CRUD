@@ -118,7 +118,7 @@ public class UserController {
         return "read";
     }
 
-/*
+
     @RequestMapping(value = {"/","/login"}, method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null) {
@@ -132,13 +132,17 @@ public class UserController {
         return "login";
     }
 
-    */
+    /*
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String login(User user) {
 
+        if (user.getRole().equals("admin")) {
+            return "redirect/admin";
+        }
+
         return "login";
     }
-/*
+
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model) {
 
