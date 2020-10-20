@@ -16,8 +16,8 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    @PersistenceContext
-    EntityManager entityManager;
+  //  @PersistenceContext
+  //  EntityManager entityManager;
 
     @Autowired
      SessionFactory sessionFactory;
@@ -26,19 +26,21 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void saveUser(User user) {
-        entityManager.persist(user);
+        sessionFactory.getCurrentSession().saveOrUpdate(user);
+        //entityManager.persist(user);
     }
 
     @Override
     public User getUserById(long id) {
 
-        return entityManager.find(User.class, id);
-
+       // return entityManager.find(User.class, id);
+        return sessionFactory.getCurrentSession().get(User.class, id);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return entityManager.createQuery("select e from User e", User.class).getResultList();
+       // return entityManager.createQuery("select e from User e", User.class).getResultList();
+        return sessionFactory.getCurrentSession().createQuery("FROM User", User.class).getResultList();
     }
     @Override
     public User findByUsername(String username) {
@@ -65,17 +67,20 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void editUser(User user) {
-        entityManager.merge(user);
+
+        saveUser(user);
+        //entityManager.merge(user);
     }
 
     @Override
     public void deleteUser(long id) {
-        User userToBeDeleted = entityManager.getReference(User.class, id);
+      /*  User userToBeDeleted = entityManager.getReference(User.class, id);
 
         if (userToBeDeleted != null) {
             entityManager.remove(userToBeDeleted);
         }
-
+  */
+        sessionFactory.getCurrentSession().delete(getUserById(id));
     }
 
 }
