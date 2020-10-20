@@ -138,7 +138,7 @@ public class UserController {
   */
 
 
-    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET) // Возможно здесь нужно разделить маппинги
     public String login(User user) {
 
         return "login";
