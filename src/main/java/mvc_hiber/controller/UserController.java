@@ -116,7 +116,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/")
+ /*   @GetMapping("/")
     public String showUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "read";
@@ -135,13 +135,11 @@ public class UserController {
         return "login";
     }
 
-    /*
+  */
+
+
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String login(User user) {
-
-        if (user.getRole().equals("admin")) {
-            return "redirect/admin";
-        }
 
         return "login";
     }
@@ -153,6 +151,6 @@ public class UserController {
     }
 
 
- */
+
 
 }
