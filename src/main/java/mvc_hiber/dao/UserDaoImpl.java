@@ -4,6 +4,7 @@ import mvc_hiber.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -17,8 +18,10 @@ public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
     EntityManager entityManager;
-   // SessionFactory sessionFactory;
-    SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+
+    @Autowired
+     SessionFactory sessionFactory;
+   // SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 
 
     @Override
@@ -40,8 +43,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findByUsername(String username) {
 
-     //   return entityManager.find(User.class, name);
-      // return (User) session.load(User.class, name);
+        //   return entityManager.find(User.class, name);
+        // return (User) session.load(User.class, name);
 /*
         System.out.println("List<User> users = new ArrayList<>();");
         List<User> users = new ArrayList<>();
@@ -53,7 +56,6 @@ public class UserDaoImpl implements UserDao {
         } else {
             return null;
         }
-
  */
         String hql ="FROM User WHERE name=:name";
         Query query = sessionFactory.getCurrentSession().createQuery(hql).setParameter("name",username);// здесь SessionFactory-null
