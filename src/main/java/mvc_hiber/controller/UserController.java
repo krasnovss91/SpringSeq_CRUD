@@ -115,8 +115,8 @@ public class UserController {
         return "read";
     }
 
-
- /*   @GetMapping("/")
+/*
+    @GetMapping("/")
     public String showUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "read";

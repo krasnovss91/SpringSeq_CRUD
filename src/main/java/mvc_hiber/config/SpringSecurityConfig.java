@@ -31,9 +31,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public AuthenticationSuccessHandler userAuthenticationSuccessHandler() {
+    public UserAuthenticationSuccessHandler userAuthenticationSuccessHandler() {
         return new UserAuthenticationSuccessHandler();
     }
+
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -56,8 +57,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .formLogin()
                 .loginPage("/login")
-                .successHandler(userAuthenticationSuccessHandler())
-                .failureUrl("/login?error=true") // при попытке входа бросает сюда
+                .successHandler(userAuthenticationSuccessHandler())//здесь вызывается проблемный метод
+                .failureUrl("/login?error=true") // при неудачной попытке входа бросает сюда
                 .and()
 
                 .logout()
