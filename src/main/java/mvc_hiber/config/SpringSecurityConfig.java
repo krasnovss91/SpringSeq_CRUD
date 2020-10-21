@@ -57,7 +57,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .formLogin()
                 .loginPage("/login")
-                .successHandler(userAuthenticationSuccessHandler())//здесь вызывается проблемный метод
+                .successHandler(userAuthenticationSuccessHandler())//здесь вызывается страница входа, затем летит в проблемный метод
                 .failureUrl("/login?error=true") // при неудачной попытке входа бросает сюда
                 .and()
 
