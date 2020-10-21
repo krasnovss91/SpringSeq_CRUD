@@ -30,12 +30,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return NoOpPasswordEncoder.getInstance();//java.lang.NoClassDefFoundError: org/springframework/security/converter/RsaKeyConverters
     }
 
-    @Bean
-    public UserAuthenticationSuccessHandler userAuthenticationSuccessHandler() {
-        return new UserAuthenticationSuccessHandler();
-    }
-
-
+    
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         System.out.println("SpringSecurityConfig --- userDetailsService ------ " + userDetailsService);
@@ -57,7 +52,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .formLogin()
                 .loginPage("/login")
-                .successHandler(userAuthenticationSuccessHandler())//здесь вызывается страница входа, затем летит в проблемный метод
+               // .successHandler(userAuthenticationSuccessHandler())//здесь вызывается страница входа, затем летит в проблемный метод
                 .failureUrl("/login?error=true") // при неудачной попытке входа бросает сюда
                 .and()
 
