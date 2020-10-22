@@ -8,7 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 import mvc_hiber.model.User;
 import mvc_hiber.service.SecurityService;
 import mvc_hiber.service.UserService;
-import mvc_hiber.validator.UserValidator;
 
 @Controller
 public class UserController {
@@ -16,18 +15,17 @@ public class UserController {
 
     private SecurityService securityService;
 
-    private UserValidator userValidator;
 
     @Autowired
-    public UserController(UserService userService, SecurityService securityService, UserValidator userValidator) {
+    public UserController(UserService userService, SecurityService securityService) {
         this.userService = userService;
-        this.securityService=securityService;
-        this.userValidator=userValidator;
+        this.securityService = securityService;
+     
     }
 
 
     @Deprecated
-//Добавить маппинг на страницу login
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String addPage(@ModelAttribute("login") User user, Model model) {
@@ -35,16 +33,7 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String enter(@ModelAttribute("login") User user, Model model){
-        model.addAttribute("user", user);
-        if(user.getRole().equals("admin")){
-            return "admin";
-        }
-        else {
-            return "read";
-        }
-    }
+
 /*
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String readUserList(Model model) {
@@ -151,8 +140,6 @@ public class UserController {
 
         return "admin";
     }
-
-
 
 
 }

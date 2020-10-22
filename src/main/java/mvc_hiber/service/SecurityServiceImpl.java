@@ -15,11 +15,7 @@ import org.springframework.stereotype.Service;
 @Service("securityService")
 public class SecurityServiceImpl implements mvc_hiber.service.SecurityService {
 
- //   private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
-
-  // @Autowired
-    private AuthenticationManager authenticationManager;
-
+    AuthenticationManager authenticationManager;
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -51,7 +47,6 @@ public class SecurityServiceImpl implements mvc_hiber.service.SecurityService {
         if (authenticationToken.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
- //           logger.debug(String.format("Successfully %s auto logged in", username));
         }
     }
 }
