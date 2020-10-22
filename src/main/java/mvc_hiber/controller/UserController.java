@@ -3,7 +3,6 @@ package mvc_hiber.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import mvc_hiber.model.User;
@@ -35,6 +34,17 @@ public class UserController {
         model.addAttribute("user", new User());
         return "login";
     }
+
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public String enter(@ModelAttribute("login") User user, Model model){
+        model.addAttribute("user", user);
+        if(user.getRole().equals("admin")){
+            return "admin";
+        }
+        else {
+            return "read";
+        }
+    }
 /*
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String readUserList(Model model) {
@@ -56,29 +66,21 @@ public class UserController {
         model.addAttribute("user", new User());
         return "registration";
     }
-
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("registration") User user) {
-
         userService.saveUser(user);
         return "redirect:/";
     }
-
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
-
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-
         userService.saveUser(userForm);
-
         securityService.autoLogin(userForm.getName(), userForm.getConfirmPassword());
-
         return "redirect:/navigation";
     }
-
 */
 
     @RequestMapping(value = "/admin/update/{id}", method = RequestMethod.GET)
@@ -121,32 +123,24 @@ public class UserController {
         model.addAttribute("users", userService.getAllUsers());
         return "read";
     }
-
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null) {
             model.addAttribute("error", "Username or password is incorrect.");
         }
-
         if (logout != null) {
             model.addAttribute("message", "Logged out successfully.");
         }
-        
+
         return "login";
     }
-
-
-
     @RequestMapping(value = "/",method =  RequestMethod.POST)
     public String enter(@ModelAttribute("user") User user, Model model){
-
-
     }
-
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET) // Возможно здесь нужно разделить маппинги
    //@RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String login(User user) {
-        
+
         return "login";
     }
 */
