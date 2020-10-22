@@ -43,9 +43,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         System.out.println("или USER + ADMIN");
         http
                 .authorizeRequests()
-                .antMatchers("/read").access("hasRole('USER') or hasRole('ADMIN')")
-                .antMatchers("/user/**").access("hasRole('ROLE_USER')")
-                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/read").access("hasAuthority('user') or hasAuthority('admin')")
+                .antMatchers("/user/**").access("hasAuthority('user')")
+                .antMatchers("/admin/**").access("hasAuthority('admin')")
 
                 .anyRequest().anonymous()
                 .and()
