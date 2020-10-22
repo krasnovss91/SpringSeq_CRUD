@@ -30,7 +30,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return NoOpPasswordEncoder.getInstance();//java.lang.NoClassDefFoundError: org/springframework/security/converter/RsaKeyConverters
     }
 
-    
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         System.out.println("SpringSecurityConfig --- userDetailsService ------ " + userDetailsService);

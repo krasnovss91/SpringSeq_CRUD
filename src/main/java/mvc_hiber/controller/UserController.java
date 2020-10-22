@@ -29,13 +29,13 @@ public class UserController {
 
     @Deprecated
 //Добавить маппинг на страницу login
-/*
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String addPage(@ModelAttribute("login") User user, Model model) {
         model.addAttribute("user", new User());
         return "login";
     }
-
+/*
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String readUserList(Model model) {
         model.addAttribute("allUsers", userService.getAllUsers());
@@ -135,14 +135,22 @@ public class UserController {
         return "login";
     }
 
-  */
 
+
+    @RequestMapping(value = "/",method =  RequestMethod.POST)
+    public String enter(@ModelAttribute("user") User user, Model model){
+
+
+    }
 
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET) // Возможно здесь нужно разделить маппинги
+   //@RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String login(User user) {
-
+        
         return "login";
     }
+*/
+
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model) {
