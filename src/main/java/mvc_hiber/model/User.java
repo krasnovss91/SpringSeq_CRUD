@@ -1,11 +1,13 @@
 package mvc_hiber.model;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "users_sec")
-public class User  implements UserDetails{
+public class User  implements UserDetails {
 
     @Id
     @Column(name = "id")
