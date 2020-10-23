@@ -82,9 +82,9 @@ public class User  implements UserDetails {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
+   // public String getName() {
+      //  return name;
+   // }
 
     public void setName(String name) {
         this.name = name;
@@ -110,7 +110,7 @@ public class User  implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return name;
     }
 
     @Override
