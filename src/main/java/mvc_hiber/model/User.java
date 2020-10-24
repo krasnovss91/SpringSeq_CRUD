@@ -59,6 +59,14 @@ public class User  implements UserDetails {
 
     }
 
+    private  boolean accountNonExpired;
+
+    private  boolean accountNonLocked;
+
+    private  boolean credentialsNonExpired;
+
+    private  boolean enabled;
+
     public User(String name, String login, String password, String role) {
         this.name = name;
         this.login = login;
@@ -115,22 +123,22 @@ public class User  implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return this.accountNonExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return this.accountNonLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return this.credentialsNonExpired;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return this.enabled;
     }
 
     public void setPassword(String password) {
